@@ -2,14 +2,23 @@
 
 
 each star simulation is going to be held constant in time, ie with a constant X,Y,Z
+some other boundary conditions are:
+M_r (mass at r = 0) = 0
+L_r (luminosity at r=0) = 0
+T_R (temperature at r=R) = 0
+P_R (pressure at r=R) = 0
+rho_R (density at r=R) = 0
+
+do we know the pressure and temperature at the core? maybe, depends if joe will allow it
+
 
 STEPS
 define functions to have m_tot X,Y,Y
 define each epsilon (epsilon_pp, epsilon_cno, epsilon_3alpha) should have its own function, as they are rediculously long. epsilon is a function of T & rho
+define kappa functions seperately. kappa is a function of T & rho
 
 
 
 
 
-S
 If we cannot define our initial density and Temperature, then perhaps we will have to create a backwards fucntion that will change our rho_0 until we get a matching mass
