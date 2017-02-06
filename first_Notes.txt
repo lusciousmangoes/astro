@@ -11,6 +11,13 @@ rho_R (density at r=R) = 0
 
 do we know the pressure and temperature at the core? maybe, depends if joe will allow it
 
+how can we find the density as a function of radius??
+perhaps we can run a backwards function that guesses a density, and calculated a mass. we can then vary the initial density untill we get a matching mass
+perhaps using the equation used in the notes rho = P_gas * mu * m_H / (kappa*T)
+
+
+recall that termperatures will be different based on whether there is radiative transport or convective transport
+
 
 STEPS
 define functions to have m_tot X,Y,Y
@@ -21,4 +28,3 @@ define kappa functions seperately. kappa is a function of T & rho
 
 
 
-If we cannot define our initial density and Temperature, then perhaps we will have to create a backwards fucntion that will change our rho_0 until we get a matching mass
