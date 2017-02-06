@@ -1,5 +1,6 @@
-# Astro project, hopefully this will work
+# Astro project, hopefully this will work, even after a few changes
 # for more info,
+
 
 …or create a new repository on the command line
 
