@@ -4,6 +4,7 @@
 Hector was here 
 Najla was here
 REBECCA HASN'T MADE ANY CHANGES YET! :P
+YES Rebecca HAS! :) 
 …or create a new repository on the command line
 
 echo "# astro" >> README.md
