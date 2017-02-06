@@ -1,1 +1,15 @@
-#Notes from the first meeting to determine best course of action 
+#Notes from the first meeting to determine best course of action
+
+
+each star simulation is going to be held constant in time, ie with a constant X,Y,Z
+
+STEPS
+define functions to have m_tot X,Y,Y
+define each epsilon (epsilon_pp, epsilon_cno, epsilon_3alpha) should have its own function, as they are rediculously long. epsilon is a function of T & rho
+
+
+
+
+
+
+If we cannot define our initial density and Temperature, then perhaps we will have to create a backwards fucntion that will change our rho_0 until we get a matching mass
