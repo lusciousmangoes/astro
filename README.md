@@ -1,6 +1,8 @@
 # Astrophysics Project 1
 # Create Stars
 
+Hector
+
 
 …or create a new repository on the command line
 
