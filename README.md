@@ -1,9 +1,7 @@
 # Astrophysics Project 1
 # Create Stars
 
-Hector
-
-
+Hector was here 
 …or create a new repository on the command line
 
 echo "# astro" >> README.md
