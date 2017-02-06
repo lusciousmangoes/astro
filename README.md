@@ -1,24 +1,15 @@
 ﻿# Astrophysics Project 1
 # Create Stars
 
-Hector was here 
-Najla was here
-REBECCA HASN'T MADE ANY CHANGES YET! :P
-YES Rebecca HAS! :) 
-…or create a new repository on the command line
+# HOW TO ACCESS THE REPOSITORY:
 
-echo "# astro" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/lusciousmangoes/astro.git
-git push -u origin master
+# OPEN TERMINAL IN THE CORRECT DIRECTORY ON YOUR LOCAL COMPUTER
+# OPEN TERMINAL AND RUN THE COMMAND git pull
+# MAKE WHATEVER CHANGES YOU NEED TO MAKE
+# RUN THE COMMAND git add filename
+# RUN THE COMMAND git commit -m "whatever changes you made"
+# RUN THE COMMAND git push
+# SUCCESS!
 
-…or push an existing repository from the command line
 
-git remote add origin https://github.com/lusciousmangoes/astro.git
-git push -u origin master
-
-…or import code from another repository
-
-You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
+# ENSURE YOU PULL BEFORE YOU START TO MAKE CHANGES, AND PUSH ONCE YOU ARE DONE
