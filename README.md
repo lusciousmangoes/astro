@@ -1,15 +1,15 @@
 ﻿# Astrophysics Project 1
 # Create Stars
 
-# HOW TO ACCESS THE REPOSITORY:
+# ENSURE YOU PULL BEFORE YOU START TO MAKE CHANGES, AND PUSH ONCE YOU ARE DONE
 
-# OPEN TERMINAL IN THE CORRECT DIRECTORY ON YOUR LOCAL COMPUTER
-# OPEN TERMINAL AND RUN THE COMMAND git pull
-# MAKE WHATEVER CHANGES YOU NEED TO MAKE
-# RUN THE COMMAND git add filename
-# RUN THE COMMAND git commit -m "whatever changes you made"
-# RUN THE COMMAND git push
+# open terminal in the correct directory on your local computer
+# open terminal and run the command: git pull
+# make whatever changes you need to make
+# run the command: git add filename
+# run the command: git commit -m "whatever changes you made"
+# run the command: git push
+# enter username and password
 # SUCCESS!
 
 
-# ENSURE YOU PULL BEFORE YOU START TO MAKE CHANGES, AND PUSH ONCE YOU ARE DONE
