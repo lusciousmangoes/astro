@@ -11,5 +11,5 @@ define each epsilon (epsilon_pp, epsilon_cno, epsilon_3alpha) should have its ow
 
 
 
-
+S
 If we cannot define our initial density and Temperature, then perhaps we will have to create a backwards fucntion that will change our rho_0 until we get a matching mass
