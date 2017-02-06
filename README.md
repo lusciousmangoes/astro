@@ -2,7 +2,8 @@
 # Create Stars
 
 Hector was here 
-Najla was here 
+Najla was here
+REBECCA HASN'T MADE ANY CHANGES YET! :P
 …or create a new repository on the command line
 
 echo "# astro" >> README.md
