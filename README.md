@@ -1,5 +1,5 @@
-# Astro project, hopefully this will work, even after a few changes
-# for more info,
+# Astrophysics Project 1
+# Create Stars
 
 
 …or create a new repository on the command line
