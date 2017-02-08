@@ -1,17 +1,17 @@
-def RungeKutta(r_start,r_end,h,P0,T0,f,g,h,l,stop,data):
+def RungeKutta(r_start,r_end,h,P0,T0,P,M,L,T,stop,data):
 	
-	r = np.arange(x_start,x_end,h)
-	P = np.arange(x_start,x_end,h)
-	M = np.arange(x_start,x_end,h)
-	L = np.arange(x_start,x_end,h)
-	T = np.arange(x_start,x_end,h)
+	r = np.arange(r_start,r_end,h)
+	P = np.arange(r_start,r_end,h)
+	M = np.arange(r_start,r_end,h)
+	L = np.arange(r_start,r_end,h)
+	T = np.arange(r_start,r_end,h)
 
 	P[0] = P0
 	M[0] = 0
 	L[0] = 0
 	T[0] = T0
 	
-	for i in range(0,len(x)-1):
+	for i in range(0,len(r)-1):
 
 	    k1 = f(x[i],y[i],z[i])*h 
 	    l1 = g(x[i],y[i],z[i])*h
