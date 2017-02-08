@@ -6,3 +6,5 @@ P_gas = P_tot - P_rad
 P_gas = rho T / (mu m_H)
 so
 rho = (P_tot - 0.33 a T^4) mu m_H / T
+
+more changes
