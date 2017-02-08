@@ -1,6 +1,3 @@
-# LOOK AT THE KAPPAS ON LINES +- 60-80
-# IN THE NOTES ON PAGE 4/5 THE KAPPA DEFINITIONS ARE WEIRD, IS THERE A LIMIT ON WHEN k_H HAS A ROLE??
-
 # don't really know how to do the P,M,K,T functions
 
 import scipy.constants
@@ -95,7 +92,10 @@ def k_H(P,T):
 # define kappa_H
 
 def kappa(P,T):
-   val = k_bf(P,T) + k_ff(P,T) + k_es + k_H(P,T)
+   if (3000 <= T <= 6000) and (10**-7 <= rho(P,T) <= 10**-2) and (0.001 < Z < 0.003):
+      val = k_bf(P,T) + k_ff(P,T) + k_es + k_H(P,T)
+   else:
+      val = k_bf(P,T) + k_ff(P,T) + k_es
    return val
 # define kappa overall
 
