@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def RungeKutta(r_start, r_end, h, P0, M0, L0, T0, rho0, P_func, M_func, L_func, T_func, stop, data):
 	
 	r = np.arange(r_start,r_end,h)
