@@ -1,4 +1,6 @@
 # don't really know how to do the P,M,K,T functions
+# I think I have done them incorrectly
+# perhaps we even need another main function that includes this and runge_kutta to do the work
 
 import scipy.constants
 import numpy as np
