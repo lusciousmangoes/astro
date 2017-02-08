@@ -10,6 +10,7 @@ Create Stars
 * run the command: git commit -m "whatever changes you made"
 * run the command: git push
 * enter username and password
+
 SUCCESS!
 
 
