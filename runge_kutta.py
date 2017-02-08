@@ -1,4 +1,4 @@
-def RungeKutta(r_start,r_end,h,P0,T0,P_func,M_func,L_func,T_func,rho0,stop,data):
+def RungeKutta(r_start, r_end, h, P0, M0, L0, T0, rho0, P_func, M_func, L_func, T_func, stop, data):
 	
 	r = np.arange(r_start,r_end,h)
 	P = np.arange(r_start,r_end,h)
@@ -6,34 +6,42 @@ def RungeKutta(r_start,r_end,h,P0,T0,P_func,M_func,L_func,T_func,rho0,stop,data)
 	L = np.arange(r_start,r_end,h)
 	T = np.arange(r_start,r_end,h)
 
+
 	P[0] = P0
-	M[0] = 0
-	L[0] = 0
+	M[0] = M0
+	L[0] = L0
 	T[0] = T0
 
 		
-	
 	for i in range(0,len(r)-1):
 
-	    k1 = P(r[i],P[i],T[i])*h 
-	    l1 = M(r[i],y[i],z[i])*h
-		m1 = 
-		n1 = 
+	    p1 = P_func(r[i], T[i], M[i], L[i])*h 
+	    m1 = M_func(r[i], T[i], P[i], L[i])*h 
+		l1 = L_func(r[i], T[i], M[i], P[i])*h 
+		t1 = T_func(r[i], P[i], M[i], L[i])*h 
 
-	    k2 = P(r[i]+h/2.0,P[i]+k1/2.0,z[i]+l1/2.0)*h 
-	    l2 = M(r[i]+h/2.0,y[i]+k1/2.0,z[i]+l1/2.0)*h
+	    p2 = P_func(r[i]+h/2.0, T[i]+t1/2.0, M[i]+m1/2.0, L[i]+l1/2.0) * h 
+	    m2 = M_func(r[i]+h/2.0, T[i]+t1/2.0, P[i]+p1/2.0, L[i]+l1/2.0) * h 
+        l2 = L_func(r[i]+h/2.0, T[i]+t1/2.0, M[i]+m1/2.0, P[i]+p1/2.0) * h 
+	    t2 = T_func(r[i]+h/2.0, P[i]+p1/2.0, M[i]+m1/2.0, L[i]+l1/2.0) * h 
 
-	    k3 = P(r[i]+h/2.0,y[i]+k2/2.0,z[i]+l2/2.0)*h 
-	    l3 = M(r[i]+h/2.0,y[i]+k2/2.0,z[i]+l2/2.0)*h
+	    p3 = P_func(r[i]+h/2.0, T[i]+t2/2.0, M[i]+m2/2.0, L[i]+l2/2.0) * h 
+	    m3 = M_func(r[i]+h/2.0, T[i]+t2/2.0, P[i]+p2/2.0, L[i]+l2/2.0) * h 
+        l3 = L_func(r[i]+h/2.0, T[i]+t2/2.0, M[i]+m2/2.0, P[i]+p2/2.0) * h 
+	    t3 = T_func(r[i]+h/2.0, P[i]+p2/2.0, M[i]+m2/2.0, L[i]+l2/2.0) * h
 
-	    k4 = P(r[i]+h,y[i]+k3,z[i]+l3)*h 
-	    l4 = M(r[i]+h,y[i]+k3,z[i]+l3)*h
+	    p4 = P_func(r[i]+h, T[i]+t3, M[i]+m3, L[i]+l3) * h 
+	    m4 = M_func(r[i]+h, T[i]+t3, P[i]+p3, L[i]+l3) * h 
+        l4 = L_func(r[i]+h, T[i]+t3, M[i]+m3, P[i]+p3) * h 
+	    t4 = T_func(r[i]+h, P[i]+p3, M[i]+m3, L[i]+l3) * h
 
-	    z[i+1] = z[i] + l1/6.0 + l2/3.0 + l3/3.0 + l4/6.0
-	    y[i+1] = y[i] + k1/6.0 + k2/3.0 + k3/3.0 + k4/6.0
+		P[i+1] = P[i] + p1/6.0 + p2/3.0 + p3/3.0 + p4/6.0
+	    M[i+1] = M[i] + m1/6.0 + m2/3.0 + m3/3.0 + m4/6.0
+	    L[i+1] = L[i] + l1/6.0 + l2/3.0 + l3/3.0 + l4/6.0
+	    T[i+1] = T[i] + t1/6.0 + t2/3.0 + t3/3.0 + t4/6.0
 
-	    if stop(x[i+1],y[i+1],z[i+1],y[0]):
-	    	return x[0:i],y[0:i]
+	    if stop(P[i+1],M[i+1],L[i+1],T[i+1],data):
+	    	return P[0:i],M[0:i],L[0:i],T[0:i]
 
 	#print("It should not reach this point")
-	return x,y
+	return P,M,L,T
