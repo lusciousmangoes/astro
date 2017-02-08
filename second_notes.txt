@@ -8,4 +8,20 @@ so
 rho = (P_tot - 0.33 a T^4) mu m_H / T
 
 
-gamma = 3/2
+gamma = 5/3 --> from ideal gas
+
+What we accomplishe today:
+	We made a runge kutta file that will take initial values and stop values
+	We created a function file that contains all necessary files
+
+Next Step:
+	Create main function that will call RK and function, run them to get data
+	Run with known values of sun to make sure it works(after we correct errors,especially michaels!)
+	Create file to have multiple initial conditions to run for many different stars
+	plot r vs P
+	plot r vs mu
+	plot r vs L
+	plot r vs T
+	plot T vs L
+	
+
