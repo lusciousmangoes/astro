@@ -22,7 +22,6 @@ g_ff = 1.
 # define non-changing constants
 # these are defined globally
 
-print G
 
 def T6(T):
    val = T / 10**6
@@ -118,7 +117,7 @@ def M(r,T,P,L):
    return val
 
 def P(r,T,M,L):
-   val = -G * M rho(P,T) / r**2
+   val = -G * M * rho(P,T) / r**2
    return val
 
 def L(r,T,M,P):
@@ -126,7 +125,7 @@ def L(r,T,M,P):
    return val
 
 def T(r,P,M,L):
-   if (log(P) / log(T) < (gamma / (gamma - 1)):
+   if (log(P) / log(T) < (gamma / (gamma - 1))):
       val = -3. * kappa(P,T) * rho(P,T) * L / (4 * a * c * T**3 * 4 * np.pi * r**2)
    # radiative
    else:
