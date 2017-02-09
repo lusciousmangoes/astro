@@ -1,4 +1,3 @@
-# don't really know how to do the P,M,K,T functions
 # I think I have done them incorrectly
 # perhaps we even need another main function that includes this and runge_kutta to do the work
 
@@ -12,13 +11,18 @@ Z = 1
 # define these globally
 
 a = 7.565767 * 10 **(-16)
+gamma = 5./3.
 m_H = scipy.constants.m_p
 k = scipy.constants.k
+G = scipy.constants.G
+c = scipy.constants.c
 f_pp = 1.
 f_3a = 1.
 g_ff = 1.
 # define non-changing constants
 # these are defined globally
+
+print G
 
 def T6(T):
    val = T / 10**6
@@ -47,7 +51,7 @@ def psi_pp(T):
 
 def C_pp(T):
    val = 1 + 0.0123 * T6(T)**(1./3.) + 0.0109 * T6(T)**(2./3.) + 0.000938 * T6(T)
-  return val
+   return val
 
 def e_pp(P,T):
    val = 0.241 * rho(P,T) * X**2 * f_pp * psi_pp(T) * C_pp(T) * T6(T)**(-2./3.) * np.exp(-33.8*T6(T)**(-1./3.))
@@ -79,7 +83,7 @@ def k_bf(P,T):
    return val
 # define kappa_bf (and therefore t/g_bf)
 
-def k_ff(P,T)
+def k_ff(P,T):
    val = 3.68*10**18 * g_ff * (1 - Z) * (1 + X) * rho(P,T) / T**(3./5.)
    return val
 # define kappa_ff
@@ -104,12 +108,29 @@ def kappa(P,T):
 
 
 
-'''
-m
 
-P
 
-L
+# below here i'm pretty sure there are errors
+# quite possibly in the if statements as well
 
-T
-'''
+def M(r,T,P,L):
+   val = 4 * np.pi * r**2 * rho(P,T)
+   return val
+
+def P(r,T,M,L):
+   val = -G * M rho(P,T) / r**2
+   return val
+
+def L(r,T,M,P):
+   val = 4 * np.pi * r**2 * rho(P,T) * e(P,T)
+   return val
+
+def T(r,P,M,L):
+   if (log(P) / log(T) < (gamma / (gamma - 1)):
+      val = -3. * kappa(P,T) * rho(P,T) * L / (4 * a * c * T**3 * 4 * np.pi * r**2)
+   # radiative
+   else:
+      val = -(1-1/gamma) * mu(X,Y,Z) * m_H * G * M / (k * r**2)
+   # adiabatic convection
+
+
