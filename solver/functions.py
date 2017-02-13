@@ -4,9 +4,9 @@
 import scipy.constants
 import numpy as np
 
-X = 1
-Y = 1
-Z = 1
+#X = 1
+#Y = 1
+#Z = 1
 # WE'RE GOING TO NEED TO IMPORT X,Y,Z, AS WELL AS OTER INITIAL CONDITIONS
 # define these globally
 
@@ -20,7 +20,7 @@ f_pp = 1.
 f_3a = 1.
 g_ff = 1.
 
-mu = (2*X + 3./4. * Y + 1./2. * Z)**-1
+#mu = (2*X + 3./4. * Y + 1./2. * Z)**-1
 # define non-changing constants
 # these are defined globally
 
