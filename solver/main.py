@@ -21,6 +21,7 @@ rho0=1.0
 #final r value, file should end though with stop function
 r_end = 10.0
 
+#now need to pass mu to functions within function.py
 #Define function mu that is components of star
 mu = (2*X + 3./4. * Y + 1./2. * Z)**-1
 
@@ -30,6 +31,6 @@ def stop(P,M,L,T,data):
 	else:
 		return False		
 
-RK(0.0, r_end, 0.01, P0, M0, L0, T0, rho0, dP, dM, dL, dT, stop, 0.00001):
+RK(0.0, r_end, 0.01, P0, M0, L0, T0, rho0, dP, dM, dL, dT, stop, 0.00001)
 
  
