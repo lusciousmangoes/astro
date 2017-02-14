@@ -44,12 +44,15 @@ def tdivgbf(P,T):
    return 0.708*(rho(P,T)*(1+cons.X))**(1./5.)
 
 def k_bf(P,T):
-   return 4.34*10**21 * tdivgbf(P,T)**-1 * Z * (1+cons.X) * rho(P,T) / T**3.5
+   return 4.34*10**21 * tdivgbf(P,T)**-1 * cons.Z * (1+cons.X) * rho(P,T) / T**3.5
 # define kappa_bf (and therefore t/g_bf)
 
-def k_ff(P,T):
-   return 3.68*10**18 * cons.g_ff * (1 - cons.Z) * (1 + cons.X) * rho(P,T) / T**3.5
+#def k_ff(P,T):
+#   return 3.68*10**18 * cons.g_ff * (1 - cons.Z) * (1 + cons.X) * rho(P,T) / T**3.5
 # define kappa_ff
+
+def k_ff(P,T):
+   return 3.68*10**18 * (1 - cons.Z) * (1 + cons.X) * rho(P,T) / T**3.5
 
 def k_es():
    return 0.02 * (1 + cons.X)
@@ -71,7 +74,7 @@ def kappa(P,T):
 def dM(r,T,P,L):
    return 4 * np.pi * r**2 * rho(P,T)
 
-def dP(r,T,M,L):
+def dP(r,T,M,P):
    return -cons.G * M * rho(P,T) / r**2
 
 def dL(r,T,M,P):
@@ -79,8 +82,8 @@ def dL(r,T,M,P):
 
 # The left side of this equation needs to be a derivative
 # But I'm not sure the best way to do so
-def dT(r,P,M,L):
-   if (log(P) / log(T) < (cons.gamma / (cons.gamma - 1.))):
+def dT(r,P,M,L,T):
+   if (np.log(P) / np.log(T) < (cons.gamma / (cons.gamma - 1.))):
       return -3. * kappa(P,T) * rho(P,T) * L / (4 * cons.a * cons.c * T**3 * 4 * np.pi * r**2)
    # radiative
    else:

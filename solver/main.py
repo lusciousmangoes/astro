@@ -30,6 +30,6 @@ def stop(P,M,L,T,data):
 
 #print e(10.0,10.0**7) #Testing some stuff	
 
-RK(0.0, r_end, 0.01, P0, M0, L0, T0, rho0, dP, dM, dL, dT, stop, 0.00001)
+RK(0.01, r_end, 0.01, P0, M0, L0, T0, rho0, dP, dM, dL, dT, stop, 0.00001)
 
  
