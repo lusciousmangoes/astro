@@ -2,7 +2,7 @@
 import scipy.constants
 
 def init(x = 0.73, y = 0.25, z = 0.02):
-    global a, gamma, m_H, k, G, c, f_pp, f_3a, f_ff, mu, X, Y, Z
+    global a, gamma, m_H, k, G, c, f_pp, f_3a, g_ff, mu, X, Y, Z
     a = 7.565767 * 10 **(-16)
     gamma = 5./3.
     m_H = scipy.constants.m_p
