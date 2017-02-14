@@ -44,7 +44,7 @@ def RungeKutta(r_start, r_end, h, P0, M0, L0, T0, rho0, P_func, M_func, L_func, 
         T[i+1] = T[i] + t1/6.0 + t2/3.0 + t3/3.0 + t4/6.0
 
         if stop(P[i+1],M[i+1],L[i+1],T[i+1],data):
-            return P[0:i],M[0:i],L[0:i],T[0:i]
+            return P[0:i],M[0:i],L[0:i],T[0:i],r[0:i]
 
 	#print("It should not reach this point")
-    return P,M,L,T
+    return P,M,L,T,r
