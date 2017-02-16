@@ -33,6 +33,11 @@ def stop(P,M,L,T,data):
 
 P,M,L,T,r = RK(0.01, r_end, 0.01, P0, M0, L0, T0, rho0, dP, dM, dL, dT, stop, 0.00001)
 
+#Need some way of recording the final luminosity and the final Temperature so we can put can plot these points onto an HR diagram
+
+#create file to write to 
+#write luminosity and temeprature to file each time we have a new set of parameters
+
 plt.plot(M,r,label='M')
 plt.show()
 
