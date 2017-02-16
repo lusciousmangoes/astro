@@ -9,7 +9,7 @@ initialize.init(0.7,0.25,0.05)
 
 #Taking zero to be the center of the star
 #initial pressure at center of star
-P0=247700 #in units of pascal
+P0=2477000 #in units of pascal
 #P0=1.0
 #initial mass at center of star
 M0=10**-4 #units of kg
