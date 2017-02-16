@@ -24,7 +24,7 @@ T0=1.571*10**7 #units of K
 rho0=1.622*10**5 #units of kg/m^3
 #rho0=1.0
 #final r value, file should end though with stop function
-r_end = 10**2 #in units of m
+r_end = 10**10 #in units of m
 #r_end=10.0
 def stop(P,M,L,T,data):
 	if (P < data or M<data or L<data or T<data):
@@ -34,17 +34,18 @@ def stop(P,M,L,T,data):
 
 #print e(10.0,10.0**7) #Testing some stuff	
 
-P,M,L,T,r = RK(0.01, r_end, 0.01, P0, M0, L0, T0, rho0, dP, dM, dL, dT, stop, 0.0001)
-
-print(L)
+#print(dP(0.01,T0,M0,P0))
+P,M,L,T,r = RK(0.01, r_end, 1000.0, P0, M0, L0, T0, rho0, dP, dM, dL, dT, stop, 0.000001)
 #Need some way of recording the final luminosity and the final Temperature so we can put can plot these points onto an HR diagram
 
 #create file to write to 
 #write luminosity and temeprature to file each time we have a new set of parameters
-
+print(len(r))
 plt.plot(r,M,label='M')
-plt.plot(r,L,label='L')
+#plt.plot(r,L,label='L')
+#plt.xscale('log')
+#plt.yscale('log')
+plt.ylim(0,10**32)
 plt.legend(loc='best')
 plt.show()
-
  

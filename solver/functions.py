@@ -9,7 +9,7 @@ def T8(T):
 # define temperature constants
 
 def rho(P,T):
-   return (P - 1./3. * cons.a * T**4) * cons.mu * cons.m_H / (cons.k * T)
+   return abs((P - 1./3. * cons.a * T**4) * cons.mu * cons.m_H / (cons.k * T))
 # define rho
 
 def psi_pp(T):
@@ -41,7 +41,7 @@ def e(P,T):
 
 
 def tdivgbf(P,T):
-   return 0.708*(rho(P,T)*(1+cons.X))**(1./5.)
+   return 0.708*(abs(rho(P,T))*(1+cons.X))**(1./5.)
 
 def k_bf(P,T):
    return 4.34*10**21 * tdivgbf(P,T)**-1 * cons.Z * (1+cons.X) * rho(P,T) / T**3.5
@@ -81,11 +81,11 @@ def dL(r,T,M,P):
    return 4 * np.pi * r**2 * rho(P,T) * e(P,T)
 
 def dT(r,P,M,L,T):
-   if (16 * cons.G * M * cons.a * cons.c * T**4 * np.pi / (3 * P * kappa(P,T) * L) < (cons.gamma / (cons.gamma - 1.))):
-      return -(1-1./cons.gamma) * cons.mu * cons.m_H * cons.G * M / (cons.k * r**2)
+  # if (16 * cons.G * M * cons.a * cons.c * T**4 * np.pi / (3 * P * kappa(P,T) * L) < (cons.gamma / (cons.gamma - 1.))):
+    return -(1-1./cons.gamma) * cons.mu * cons.m_H * cons.G * M / (cons.k * r**2)
    # adiabatic convection
-   else:
-      return -3. * kappa(P,T) * rho(P,T) * L / (4 * cons.a * cons.c * T**3 * 4 * np.pi * r**2)
+   #else:
+    #  return -3. * kappa(P,T) * rho(P,T) * L / (4 * cons.a * cons.c * T**3 * 4 * np.pi * r**2)
    # radiative      
 
 # I've fixed the "if" conditions, so now main runs without any error
