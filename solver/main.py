@@ -35,17 +35,17 @@ def stop(P,M,L,T,data):
 #print e(10.0,10.0**7) #Testing some stuff	
 
 #print(dP(0.01,T0,M0,P0))
-P,M,L,T,r = RK(0.01, r_end, 1000.0, P0, M0, L0, T0, rho0, dP, dM, dL, dT, stop, 0.000001)
+P,M,L,T,r = RK(0.00000001, r_end, 1000.0, P0, M0, L0, T0, rho0, dP, dM, dL, dT, stop, 0.000001)
 #Need some way of recording the final luminosity and the final Temperature so we can put can plot these points onto an HR diagram
 
 #create file to write to 
 #write luminosity and temeprature to file each time we have a new set of parameters
 print(len(r))
-plt.plot(r,M,label='M')
+plt.plot(r,T,label='M')
 #plt.plot(r,L,label='L')
 #plt.xscale('log')
 #plt.yscale('log')
-plt.ylim(0,10**32)
+#plt.ylim(0,10**25)
 plt.legend(loc='best')
 plt.show()
  
