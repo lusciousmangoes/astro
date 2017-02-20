@@ -82,11 +82,11 @@ def dL(r,T,M,P):
 
 def dT(r,P,M,L,T):
    if (16 * cons.G * M * cons.a * cons.c * T**4 * np.pi / (3 * P * kappa(P,T) * L) < (cons.gamma / (cons.gamma - 1.))):
-      print "convective"
+      #print "convective"
       return -(1-1./cons.gamma) * cons.mu * cons.m_H * cons.G * M / (cons.k * r**2)
    # adiabatic convection
    else:
-      print "radiative"
+      #print "radiative"
       return -3. * kappa(P,T) * rho(P,T) * L / (4 * cons.a * cons.c * T**3 * 4 * np.pi * r**2)
    # radiative      
 

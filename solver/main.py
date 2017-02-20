@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 #Define all our constants. This is where we pass X, Y, Z, and it should work everywhere
 initialize.init(0.7,0.25,0.05)
+data = open('stars.dat','a')
 
 #Taking zero to be the center of the star
 #initial pressure at center of star
@@ -44,15 +45,15 @@ P,M,L,T,r = RK(10**-6, r_end, 10.**5., P0, M0, L0, T0, rho0, dP, dM, dL, dT, sto
 #print(len(r))
 plt.plot(r,T,label='T')
 plt.legend(loc='best')
-plt.show()
+#plt.show()
  
 plt.plot(r,M,label='M')
 plt.legend(loc='best')
-plt.show()
+#plt.show()
  
 plt.plot(r,L,label='L')
 plt.legend(loc='best')
-plt.show()
+#plt.show()
  
 plt.plot(r,P,label='P')
 #plt.plot(r,L,label='L')
@@ -60,5 +61,12 @@ plt.plot(r,P,label='P')
 #plt.yscale('log')
 #plt.ylim(0,10**25)
 plt.legend(loc='best')
-plt.show()
+#plt.show()
+
+print >> data, r[-1], M[-1], T[-100], L[-1]
+data.close()
+
+
+
+
  
