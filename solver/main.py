@@ -10,7 +10,7 @@ data = open('stars.dat','a')
 
 #Taking zero to be the center of the star
 #initial pressure at center of star
-P0=2.477 *10**16. #in units of pascal
+P0=2.477 *10**17. #in units of pascal
 #P0=1.0
 #initial mass at center of star
 M0=10**-4 #units of kg
@@ -19,7 +19,7 @@ M0=10**-4 #units of kg
 L0=10**-4 #units of J/s or W
 #L0=1.0
 #initial temperature at center of star
-T0=1.571*10**7 #units of K
+T0=1.571*10**8 #units of K
 #T0=1.0
 #initial density at the center of the star
 rho0=1.622*10**5 #units of kg/m^3

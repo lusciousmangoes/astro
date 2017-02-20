@@ -11,6 +11,7 @@ Create Stars
 * run the command: `git push`
 * enter username and password
 
-SUCCESS!
+# To make the plot
+Run `gnuplot plot.p` while in the solver directory
 
 
