@@ -1,20 +1,22 @@
 import numpy as np
 
 
-def RungeKutta(r_start, r_end, h, P0, M0, L0, T0, rho0, P_func, M_func, L_func, T_func, stop, data):
+def RungeKutta(r_start, r_end, h, P0, M0, L0, T0, rho0, P_func, M_func, L_func, T_func, rho_func, kappa_func, stop, data):
 	
     r = np.arange(r_start,r_end,h)
     P = np.arange(r_start,r_end,h)
     M = np.arange(r_start,r_end,h)
     L = np.arange(r_start,r_end,h)
     T = np.arange(r_start,r_end,h)
-
+    kappas = np.arange(r_start,r_end,h)
+    rhos = np.arange(r_start,r_end,h)
 
     P[0] = P0
     M[0] = M0
     L[0] = L0
     T[0] = T0
-
+    kappas[0] = kappa_func(P0,T0)
+    rhos[0] = rho0
 		
     for i in range(0,len(r)-1):
 
@@ -43,8 +45,11 @@ def RungeKutta(r_start, r_end, h, P0, M0, L0, T0, rho0, P_func, M_func, L_func, 
         L[i+1] = L[i] + l1/6.0 + l2/3.0 + l3/3.0 + l4/6.0
         T[i+1] = T[i] + t1/6.0 + t2/3.0 + t3/3.0 + t4/6.0
 
+        kappas[i+1] = kappa_func(P[i+1],T[i+1])
+        rhos[i+1] = rho_func(P[i+1],T[i+1])
+
         if stop(P[i+1],M[i+1],L[i+1],T[i+1],r[i],data):
-            return P[0:i],M[0:i],L[0:i],T[0:i],r[0:i]
+            return P[0:i],M[0:i],L[0:i],T[0:i],r[0:i],kappas[0:i],rhos[0:i]
 
 	#print("It should not reach this point")
     return P,M,L,T,r
