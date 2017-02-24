@@ -88,12 +88,10 @@ def dT(r,P,M,L,T):
    # radiative  
     
 def integrate(r,kappa,rho):
-	A = 0.0
-    
-	for i in range(1,len(r)):
-		A += ((kappa[i]*rho[i] + kappa[i-1]*rho[i-1])/2.0)*((r[i])-r[i-1])
-	return A
-
-
+   A = 0.0 
+   integrand=kappa*rho
+   for i in range(0,len(r)-1):
+      A += ((integrand[i]+integrand[i+1])/2.0)*(r[i+1]-r[i])
+   return A
 
 # I've fixed the "if" conditions, so now main runs without any error
