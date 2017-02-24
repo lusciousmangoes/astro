@@ -51,9 +51,6 @@ def k_ff(P,T):
    return 3.68*10**18 * cons.g_ff * (1 - cons.Z) * (1 + cons.X) * rho(P,T) / T**3.5
 # define kappa_ff
 
-def k_ff(P,T):
-   return 3.68*10**18 * (1 - cons.Z) * (1 + cons.X) * rho(P,T) / T**3.5
-
 def k_es():
    return 0.02 * (1 + cons.X)
 
