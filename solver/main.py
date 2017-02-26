@@ -64,7 +64,7 @@ plt.legend(loc='best')
 #plt.show()
 
 print(' optical depth:'+str(integrate(r,kappa_array,rho_array)))
-
+print "radius", r[-1]
 print >> data, r[-1], M[-1], T[-100], L[-1]
 data.close()
 
