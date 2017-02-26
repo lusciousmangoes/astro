@@ -52,4 +52,4 @@ def RungeKutta(r_start, r_end, h, P0, M0, L0, T0, rho0, P_func, M_func, L_func, 
             return P[0:i],M[0:i],L[0:i],T[0:i],r[0:i],kappas[0:i],rhos[0:i]
 
 	#print("It should not reach this point")
-    return P,M,L,T,r
+    return P,M,L,T,r,kappas,rhos
