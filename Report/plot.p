@@ -10,8 +10,8 @@ set format y "10^%T"
 
 set output sprintf('./HR.png')
 set grid front
-plot "stars.dat" using 3:($4/(3.848*10**26)):($2/10**26) with circles notitle #Mass
-#plot "stars.dat" using 3:($4/(3.848*10**26)):($1/10**4) with circles notitle #Radius
+plot '../solver/stars.dat' using 3:($4/(3.848*10**26)):($2/10**26) with circles notitle #Mass
+#plot '../solver/stars.dat' using 3:($4/(3.848*10**26)):($1/10**4) with circles notitle #Radius
 set out
 unset grid
 
