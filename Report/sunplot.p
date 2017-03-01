@@ -1,5 +1,5 @@
 #set terminal pngcairo size 700,524 enhanced font 'Verdana,10'
-set terminal epslatex color size 6.0in,4.5in
+set terminal epslatex color size 6.2in,2.7in
 
 set notitle
 set xlabel '$r$ ($R_{\odot}$)'
