@@ -51,9 +51,6 @@ def k_ff(P,T):
    return 3.68*10**18 * cons.g_ff * (1 - cons.Z) * (1 + cons.X) * rho(P,T) / T**3.5
 # define kappa_ff
 
-def k_ff(P,T):
-   return 3.68*10**18 * (1 - cons.Z) * (1 + cons.X) * rho(P,T) / T**3.5
-
 def k_es():
    return 0.02 * (1 + cons.X)
 
@@ -88,6 +85,13 @@ def dT(r,P,M,L,T):
    else:
       #print "radiative"
       return -3. * kappa(P,T) * rho(P,T) * L / (4 * cons.a * cons.c * T**3 * 4 * np.pi * r**2)
-   # radiative      
+   # radiative  
+    
+def integrate(r,kappa,rho):
+   A = 0.0 
+   integrand=kappa*rho
+   for i in range(0,len(r)-1):
+      A += ((integrand[i]+integrand[i+1])/2.0)*(r[i+1]-r[i])
+   return A
 
 # I've fixed the "if" conditions, so now main runs without any error
