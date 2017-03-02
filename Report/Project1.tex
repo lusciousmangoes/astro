@@ -4,13 +4,10 @@
 \usepackage{amsmath}
 \usepackage{geometry}
 \usepackage{xcolor,graphicx}
-%\usepackage{wrapfig}
-%\usepackage{subcaption}
-%\usepackage{hyperref}
+\usepackage{subcaption}
 
-\title{}
-\author{}
-\date{}
+\title{Modeling Stars: \\ Two Method Comparison and Analysis}
+\author{Najla Alahmadi, Michael Cock, Rebecca Halloran, Brady Metherall, Hector Robinson}
 
 \newgeometry{margin=1in}
 \setlength\parindent{0pt}
@@ -18,19 +15,39 @@
 \begin{document}
 \maketitle
 
-\begin{figure}[htbp]
-\centering
-\input{./sunM.tex}
+We were to create code that would be able to take a stars composition and mass to determine mainly temperature, luminosity and surface radius so we can build an HR diagram. To begin we must first ensure we can build a code that will run for a single star. To do this we use the initial conditions for our sun. \\
+
+To perform the calculations we started from the inside and integrated outward. We know that the temperature should decrease to zero or close to at the surface, the radius should go to the surface radius, and the luminosity should increase. The following plots show our results using the initial conditions of the core of the sun. \\
+
+\begin{figure}[p]
+\begin{centering}
+ \begin{subfigure}{\textwidth}
+  \input{./sunM}
+  \caption{Mass profile of the Sun.}
+ \end{subfigure} \\
+ \begin{subfigure}{\textwidth}
+  \input{./sunL}
+  \caption{Luminosity profile of the Sun.}
+ \end{subfigure} \\
+  \begin{subfigure}{\textwidth}
+  \input{./sunT}
+  \caption{Temperature profile of the Sun.}
+ \end{subfigure}
+ \caption{Simulation results of the Sun.}
+ \end{centering}
 \end{figure}
 
-\begin{figure}[htbp]
-\centering
-\input{./sunT.tex}
-\end{figure}
+These plots perform as we would expect for a 1 solar mass star but they do not get the exact values as expected because we were unable to incorporate the optical depth. If we were able to incorporate this we would have had the correct values by looking at the values at a depth of the radius of the sun minus the optical depth. We expect the final values for mass, temperature, pressure, luminosity to be \\
 
-\begin{figure}[htbp]
-\centering
-\input{./sunL.tex}
+Knowing our model works properly but does not get proper values we can go farther and get a general form of an HR diagram. By running this program for a total number of **number of stars** times we got the following HR diagram. \\
+
+We can see that is **looks similar to/does not really resemble** the known HR diagram. We can explore a well known program to get a sense of what the HR diagram should look like and compare it to our own model.  We will use MESA to do the comparison. This might not allow for a proper comparison because our model is static and has no rotation but it should give a general shape of the HR diagram. \\
+
+\begin{figure}[p]
+ \begin{centering}
+  \input{./HR}
+  \caption{Our reproduction of the HR diagram. The radius of the circles represents the radius of the stars.}
+ \end{centering}
 \end{figure}
 
 \end{document}

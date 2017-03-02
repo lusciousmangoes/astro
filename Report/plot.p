@@ -1,17 +1,17 @@
-set terminal pngcairo size 700,524 enhanced font 'Verdana,10'
+#set terminal pngcairo size 700,524 enhanced font 'Verdana,10'
+set terminal epslatex color size 6.0in,4.5in
 
 set notitle
-set xlabel 'T (K)'
-set ylabel 'L (Solar Lumens)'
+set xlabel '$T$ (K)'
+set ylabel '$L$ ($L_\odot$)'
 
 set logscale xyz
-set format x "10^%T"
-set format y "10^%T"
+set format x '$10^{%T}$'
+set format y '$10^{%T}$'
 
-set output sprintf('./HR.png')
+set output sprintf('./HR.tex')
 set grid front
-plot '../solver/stars.dat' using 3:($4/(3.848*10**26)):($2/10**26) with circles notitle #Mass
-#plot '../solver/stars.dat' using 3:($4/(3.848*10**26)):($1/10**4) with circles notitle #Radius
+#plot '../solver/stars.dat' using 3:($4/(3.848*10**26)):($2/10**26) with circles notitle lc 8 #Mass
+plot '../solver/stars.dat' using 3:($4/(3.848*10**26)):($1/5/10**3) with circles notitle lc 8 #Radius
 set out
-unset grid
 
