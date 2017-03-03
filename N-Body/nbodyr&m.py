@@ -50,7 +50,12 @@ class universe:
 
 
 
-#   def accels():
+   def accels(self):
+   accel=[0.,0.,0.]
+      for i in range(0,self.n):
+         for j in range(i+1,self.n):
+            accel[0] = -G*self.parts[i].mass#######continue from here??
+
 
    @classmethod
    def read(cls,fname):
