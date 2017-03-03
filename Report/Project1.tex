@@ -15,7 +15,7 @@
 \begin{document}
 \maketitle
 
-We were to create code that would be able to take a stars composition and mass to determine mainly temperature, luminosity and surface radius so we can build an HR diagram. To begin we must first ensure we can build a code that will run for a single star. To do this we use the initial conditions for our sun. \\
+In this project, we modelled a spherically symmetric, static star by numerically integrating the four stellar equations. We started by doing this for a star that had the same conditions as the sun, and then did many other stars. Using the results, we can find a relation between luminosity and temperature of the stars, and create an HR diagram. We were to create code that would be able to take a stars composition and mass to determine mainly temperature, luminosity and surface radius and build an HR diagram. Before we get there, lets talk about our program that will numerically integrate one star. \\
 
 To perform the calculations we started from the core and integrated outward using the fourth order Runge Kutta method. We specified a core pressure, core temperature, and composition of the star. From there, the outward integration calculates total mass, luminosity, pressure and temperature at every other radius. The integration stops when the boundry conditions are met, that is, the pressure goes to zero. Once this point is reached it means we are at the surface, we can take the temperature here, and use it for the HR diagram. The following plots show our results using the initial conditions of the core of the sun. \\
 \
