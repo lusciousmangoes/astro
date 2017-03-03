@@ -17,7 +17,8 @@
 
 We were to create code that would be able to take a stars composition and mass to determine mainly temperature, luminosity and surface radius so we can build an HR diagram. To begin we must first ensure we can build a code that will run for a single star. To do this we use the initial conditions for our sun. \\
 
-To perform the calculations we started from the inside and integrated outward. We know that the temperature should decrease to zero or close to at the surface, the radius should go to the surface radius, and the luminosity should increase. The following plots show our results using the initial conditions of the core of the sun. \\
+To perform the calculations we started from the core and integrated outward using the fourth order Runge Kutta method. We specified a core pressure, core temperature, and composition of the star. From there, the outward integration calculates total mass, luminosity, pressure and temperature at every other radius. The integration stops when the boundry conditions are met, that is, the pressure goes to zero. Once this point is reached it means we are at the surface, we can take the temperature here, and use it for the HR diagram. The following plots show our results using the initial conditions of the core of the sun. \\
+\
 
 \begin{figure}[p]
 \begin{centering}
@@ -37,7 +38,7 @@ To perform the calculations we started from the inside and integrated outward. W
  \end{centering}
 \end{figure}
 
-These plots perform as we would expect for a 1 solar mass star but they do not get the exact values as expected because we were unable to incorporate the optical depth. If we were able to incorporate this we would have had the correct values by looking at the values at a depth of the radius of the sun minus the optical depth. We expect the final values for mass, temperature, pressure, luminosity to be \\
+These plots perform as we would expect for a 1 solar mass star but they do not get the exact values as expected. One thing that differs from our star to the sun is that it is only radiative for two radius steps, which is about $2\times 10^5$ meters, and convective for the rest. This is in contrast to the sun, where the radiative zone is aout 70\% of the whole star. We were also unable to incorporate the optical depth so we used the surface temperature instead. The surface temperature should go to zero but our pressure hit zero first triggering the integration to stop. If we were able to use the temperatiure at a specific optical depth, we would have expected temperatures that produced a better HR diagram. We expect the final values for mass, temperature, pressure, luminosity to be \\
 
 Knowing our model works properly but does not get proper values we can go farther and get a general form of an HR diagram. By running this program for a total number of **number of stars** times we got the following HR diagram. \\
 
