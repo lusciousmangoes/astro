@@ -3,8 +3,33 @@
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{geometry}
-\usepackage{xcolor,graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{listings}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    emph={init, RK, initialize},
+    emphstyle=\color{PineGreen},
+    commentstyle=\color{blue},
+    keywordstyle={\color{BrickRed}\bfseries},
+    numberstyle=\color{codegray},
+    stringstyle=\color{codepurple},
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false              
+}
 
 \title{Modeling Stars: \\ Two Method Comparison and Analysis}
 \author{Najla Alahmadi, Michael Cock, Rebecca Halloran, Brady Metherall, Hector Robinson}
@@ -15,38 +40,58 @@
 \begin{document}
 \maketitle
 
-We were to create code that would be able to take a stars composition and mass to determine mainly temperature, luminosity and surface radius so we can build an HR diagram. To begin we must first ensure we can build a code that will run for a single star. To do this we use the initial conditions for our sun. \\
+\lstset{style=mystyle}
 
-To perform the calculations we started from the inside and integrated outward. We know that the temperature should decrease to zero or close to at the surface, the radius should go to the surface radius, and the luminosity should increase. The following plots show our results using the initial conditions of the core of the sun. \\
+In this project, we modelled a spherically symmetric, static star by numerically integrating the four stellar equations. We started by doing this for a star that had the same core conditions as the sun, and then did many other stars. Using the results, we can find a relation between luminosity and temperature of the stars, and create an HR diagram. We were to create code that would be able to take a stars composition and mass to determine mainly temperature, luminosity and surface radius and build an HR diagram. Before we get there, lets talk about our program that will numerically integrate one star. \\
+
+To perform the calculations we started from the core and integrated outward using the fourth order Runge-Kutta method. We specified a core pressure, core temperature, core density, and composition of the star. From there, the outward integration calculates total mass, luminosity, pressure, and temperature at every other radius. The integration stops when the boundary conditions are met, that is, the pressure goes to zero. Once this point is reached it means we are at the surface, we can take the temperature here, and use it for the HR diagram, Figure \ref{fig:code} shows samples of our code in greater detail. \\
+
+\begin{figure}[htbp]
+ \begin{subfigure}{\textwidth}
+  \lstinputlisting[language=Python]{../solver/initialize.py}
+  \caption{All constants are declared in \emph{initialize.py}.}
+ \end{subfigure} \\
+ \begin{subfigure}{\textwidth}
+  \lstinputlisting[language=Python, firstnumber=7, firstline=7, lastline=17]{../solver/main.py}
+  \lstinputlisting[language=Python, firstnumber=28, firstline=28, lastline=28]{../solver/main.py}
+  \lstinputlisting[language=Python, firstnumber=56, firstline=56, lastline=56]{../solver/main.py}
+  \caption{First \emph{main.py} calls \emph{initialize.init} to define our constants, then the core conditions are specified. We then open our data file, run our Runge-Kutta method, and then print the results to the data file.}
+ \end{subfigure}
+ \caption{Important sections of the code.}
+ \label{fig:code}
+\end{figure}
 
 \begin{figure}[p]
 \begin{centering}
  \begin{subfigure}{\textwidth}
   \input{./sunM}
-  \caption{Mass profile of the Sun.}
  \end{subfigure} \\
  \begin{subfigure}{\textwidth}
   \input{./sunL}
-  \caption{Luminosity profile of the Sun.}
  \end{subfigure} \\
   \begin{subfigure}{\textwidth}
   \input{./sunT}
-  \caption{Temperature profile of the Sun.}
+ \end{subfigure} \\
+   \begin{subfigure}{\textwidth}
+  \input{./sunP}
  \end{subfigure}
  \caption{Simulation results of the Sun.}
+ \label{fig:sun}
  \end{centering}
 \end{figure}
 
-These plots perform as we would expect for a 1 solar mass star but they do not get the exact values as expected because we were unable to incorporate the optical depth. If we were able to incorporate this we would have had the correct values by looking at the values at a depth of the radius of the sun minus the optical depth. We expect the final values for mass, temperature, pressure, luminosity to be \\
+Figure \ref{fig:sun} shows our results using the initial conditions of the core of the sun. These plots are as we would expect for a 1 solar mass star, but they do not get the exact values as expected. One thing that differs from our star to the sun is that it is only radiative for two radius steps, which is about $2\times 10^5$ meters, and convective for the rest. This is in contrast to the sun, where the radiative zone is about 70\% of the whole star. We were also unable to incorporate the optical depth so we used the surface temperature instead. The surface temperature should go to zero but our pressure hit zero first triggering the integration to stop. If we were able to use the temperature at a specific optical depth, we would have expected temperatures that produced a better HR diagram. We expect the final values for mass, luminosity, temperature, and pressure to be approximately $1 M_\odot$, $1 L_\odot$, $5770$ K, and $0$ Pa, respectively. \\
 
-Knowing our model works properly but does not get proper values we can go farther and get a general form of an HR diagram. By running this program for a total number of **number of stars** times we got the following HR diagram. \\
+Knowing our model works properly but does not get proper values we can go further and get a general form of an HR diagram. By running this program for a total number of **number of stars** times we obtained the HR diagram shown in Figure \ref{fig:HR}. \\
 
 We can see that is **looks similar to/does not really resemble** the known HR diagram. We can explore a well known program to get a sense of what the HR diagram should look like and compare it to our own model.  We will use MESA to do the comparison. This might not allow for a proper comparison because our model is static and has no rotation but it should give a general shape of the HR diagram. \\
 
 \begin{figure}[p]
  \begin{centering}
   \input{./HR}
-  \caption{Our reproduction of the HR diagram. The radius of the circles represents the radius of the stars.}
+  \caption{Our reproduction of the HR diagram. The radius of the circles represents the radius of the s
+tars.}
+\label{fig:HR}
  \end{centering}
 \end{figure}
 
