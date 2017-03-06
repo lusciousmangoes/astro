@@ -44,7 +44,7 @@
 
 In this project, we modelled a spherically symmetric, static star by numerically integrating the four stellar equations. We started by doing this for a star that had the same core conditions as the sun, and then did many other stars. Using the results, we can find a relation between luminosity and temperature of the stars, and create an HR diagram. We were to create code that would be able to take a stars composition and mass to determine mainly temperature, luminosity and surface radius and build an HR diagram. Before we get there, lets talk about our program that will numerically integrate one star. \\
 
-To perform the calculations we started from the core and integrated outward using the fourth order Runge-Kutta method. We specified a core pressure, core temperature, core density, and composition of the star. From there, the outward integration calculates total mass, luminosity, pressure, and temperature at every other radius. The integration stops when the boundary conditions are met, that is, the pressure goes to zero. Once this point is reached it means we are at the surface, we can take the temperature here, and use it for the HR diagram, Figure \ref{fig:code} shows samples of our code in greater detail. \\
+To perform the calculations we started from the core and integrated outward using the fourth order Runge-Kutta method. We specified a core pressure, core temperature, core density, and composition of the star. From there, the outward integration calculates total mass, luminosity, pressure, and temperature at every other radius. The integration stops when the boundary conditions are met, that is, the pressure goes to zero. Once this point is reached it means we are at the surface, we can take the temperature here, and use it for the Hertzpring-Russell Diagram (further refered to as HR diagram), Figure \ref{fig:code} shows samples of our code in greater detail. \\
 
 \begin{figure}[htbp]
  \begin{subfigure}{\textwidth}
@@ -84,13 +84,14 @@ Figure \ref{fig:sun} shows our results using the initial conditions of the core 
 
 Knowing our model works properly but does not get proper values we can go further and get a general form of an HR diagram. By running this program for a total number of **number of stars** times we obtained the HR diagram shown in Figure \ref{fig:HR}. \\
 
-We can see that is **looks similar to/does not really resemble** the known HR diagram. We can explore a well known program to get a sense of what the HR diagram should look like and compare it to our own model.  We will use MESA to do the comparison. This might not allow for a proper comparison because our model is static and has no rotation but it should give a general shape of the HR diagram. \\
+We can see that it **looks similar to/does not really resemble** the known HR diagram. We can explore a well known program to get a sense of what the HR diagram should look like and compare it to our own model.  We will use MESA to do the comparison. This might not allow for a proper comparison because our model is static and has no rotation but it should give a general shape of the HR diagram. \\ 
+
+The main goal was to create an HR diagram by simulating a star manually and plotting the data. To do this we needed to complete many sub-parts along the way. The first objective of our team was to get a profile on github and ensure everyone knows how to pull, add, commit and push properly. In the first few tries there were of course a couple troubles where someone forgot to pull right before pushing to ensure their virsion was up to date with the original version. Eventually, everyone was able to add, commit then push a change with no problems. Splitting up work in a fair and convenient was a small challenge. Working in a big group makes it easier to write the code because we are able to all bring our ideas together and come up with a solution faster. We learned to work as a group in an efficient way, even though our ideas would not work sometimes we were able to listen to everyone and everyone was able to contribute. Different people have different styles of writing code so working in a group of five each person has to learn to read and interpret someone elses code. At the same time, we learned to comment our code so that the rest of our group would be able to understand what had been written and why.\\
 
 \begin{figure}[p]
  \begin{centering}
   \input{./HR}
-  \caption{Our reproduction of the HR diagram. The radius of the circles represents the radius of the s
-tars.}
+  \caption{Our reproduction of the HR diagram. The radius of the circles represents the radius of the stars.}
 \label{fig:HR}
  \end{centering}
 \end{figure}
