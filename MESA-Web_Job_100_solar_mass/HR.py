@@ -1,7 +1,7 @@
 
 
 #change this for each folder
-n=53 #maximum profile number in folder
+n=56 #maximum profile number in folder
 
 data = open('HR.dat','a')
 
