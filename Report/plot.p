@@ -13,7 +13,7 @@ set xr [*:*] reverse
 
 set output sprintf('./HR.tex')
 set grid front
-plot '../solver/sunpoint.dat' using 1:2 title 'Experimental Sun' lc 'red' lt 7 lw 1, \
-'../solver/stars.dat' using 3:($4/(3.848*10**26)) notitle lc 8 lt 7 lw 1
+plot '../solver/real_stars.dat' using 1:2 title 'Real Stars' lc 'red' lt 7 lw 1, \
+'../solver/stars.dat' using 3:($4/(3.848*10**26)) title 'Simulated Stars' lc 8 lt 7 lw 1
 set out
 
