@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 #Define all our constants. This is where we pass X, Y, Z
 initialize.init(0.7,0.25,0.05)
-val = 2.
+val = 3.
 while val < 10:
 
     print val, "solar initial conditions"
