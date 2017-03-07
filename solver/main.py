@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 
 #Define all our constants. This is where we pass X, Y, Z
 initialize.init(0.7,0.25,0.05)
-val = 3.
-while val < 10:
+val = 0.01
+while val < 1.:
 
     print val, "solar initial conditions"
     # Initial core conditions of the star
@@ -69,7 +69,7 @@ while val < 10:
 
     '''
 
-    val += 0.1
+    val += 0.01
     print(' optical depth:'+str(integrate(r,kappa_array,rho_array)))
     print "radius", r[-1]
     print >> data, r[-1], M[-1], T[-1], L[-1]
