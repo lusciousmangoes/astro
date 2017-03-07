@@ -5,7 +5,6 @@ tf = 3.
 t = 0.
 u=universe.read("solar_system.dat")
 u.accels()
-print(u.T,u.U)
 
 while t < tf:
 	u.leapfrog_position_update(dt)
@@ -15,6 +14,7 @@ while t < tf:
 	t += dt
 	sun = u.parts[0]
 	distances = ""
+
 	for i in range(1,9):
 		distances += str(u.parts[i].distance(sun))+ " " 
 	print(t,u.T+u.U,distances)
