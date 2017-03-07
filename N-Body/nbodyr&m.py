@@ -51,10 +51,36 @@ class universe:
 
 
    def accels(self):
-   accel=[0.,0.,0.]
+      for N in range(0,self.n):
+         self.parts[N].accel=[0.,0.,0.]
+      self.U = 0.
+      self.T = 0.
+    
       for i in range(0,self.n):
+         p_i = self.parts[i]
          for j in range(i+1,self.n):
-            accel[0] = -G*self.parts[i].mass#######continue from here??
+            p_j = self.parts[j]
+            r = p_i.distance(p_j)
+            r3 = r**3
+
+            for k in range(3):
+               p_i.accel[k] += -self.G*p_j.mass*(p_i.position[k] - p_j.position[k])/r3
+               p_j.accel[k] += -self.G*p_i.mass*(p_j.position[k] - p_i.position[k])/r3
+
+            self.U += -self.G * p_i.mass*p_j.mass/r
+         self.T += 0.5*p_i.mass*p_i.vel2()
+   
+   def leapfrog_position_update(self,dt):
+      for i in range(0,self.n):
+         p_i = self.parts[i]
+         for k in range(3):
+            p_i.position[k] += p_i.velocity[k]*dt+0.5*p_i.accel[k]*dt**2
+
+   def leapfrog_velocity_update():
+      for i in range(0,self.n):
+         p_i = self.parts[i]
+         for k in range(3):
+            p_i.velocity[k] += 0.5*p_i.accel[k]*dt    
 
 
    @classmethod

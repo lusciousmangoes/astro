@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-(t,ex,ey,ez,sx,sy,sz,E)=np.loadtxt("data.dat",unpack=True)
+(t,E,me,ve,ea,ma,ju,sa,ur,ne)=np.loadtxt("data_orbits.dat",unpack=True)
 
 #plt.plot(rs,psis,linewidth=3)
 #plt.gcf().subplots_adjust(bottom=0.15)
@@ -13,10 +13,14 @@ import matplotlib.pyplot as plt
 
 
 
-plt.plot(ex,ey,linewidth=1,color = 'r')
-plt.plot(sx,sy,linewidth=1,color = 'b')
-plt.savefig("data_plot.pdf")
+plt.plot(t,me,linewidth=1,color = 'r')
+plt.plot(t,ve,linewidth=1,color = 'b')
+plt.plot(t,ea,linewidth=1,color = 'b')
+plt.plot(t,ma,linewidth=1,color = 'b')
+plt.plot(t,ju,linewidth=1,color = 'b')
+plt.plot(t,sa,linewidth=1,color = 'b')
+plt.plot(t,ur,linewidth=1,color = 'b')
+plt.plot(t,ne,linewidth=1,color = 'b')
+plt.savefig("orbits_plot.pdf")
 
-plt.close()
-plt.plot(t,E,linewidth=1,color = 'r')
-plt.savefig("data_plot2.pdf")
+
