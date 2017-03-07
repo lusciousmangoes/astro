@@ -59,7 +59,7 @@ def k_H(P,T):
 # define kappa_H
 
 def kappa(P,T):
-   if (3000 <= T <= 6000) and (10**-7 <= rho(P,T) <= 10**-2) and (0.001 < Z < 0.003):
+   if (3000 <= T <= 6000) and (10**-7 <= rho(P,T) <= 10**-2) and (0.001 < cons.Z < 0.003):
       return k_bf(P,T) + k_ff(P,T) + k_es() + k_H(P,T)
    else:
       return k_bf(P,T) + k_ff(P,T) + k_es()

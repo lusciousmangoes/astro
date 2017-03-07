@@ -3,19 +3,24 @@ from runge_kutta import RungeKutta as RK
 from functions import *
 import initialize
 import matplotlib.pyplot as plt
+import numpy as np
 
 #Define all our constants. This is where we pass X, Y, Z
 initialize.init(0.7,0.25,0.05)
-val = 0.01
-while val < 1.:
+val = np.logspace(-5., 5., 100)
+heh=1
 
-    print val, "solar initial conditions"
+for i in val:
+
+    print i, "solar initial conditions"
+    print heh, "out of 100"
+    heh += 1
     # Initial core conditions of the star
-    P0=val*2.477 *10**16. #in units of pascal
+    P0=i*2.477 *10**16. #in units of pascal
     M0=10**-4 #units of kg
     L0=10**-4 #units of J/s or W
-    T0=val*1.571*10**7 #units of K
-    rho0=val*1.622*10**5 #units of kg/m^3
+    T0=i*1.571*10**7 #units of K
+    rho0=i*1.622*10**5 #units of kg/m^3
 
     '''
     # Initial core conditions for the sun
@@ -32,7 +37,6 @@ while val < 1.:
 
     def stop(P,M,L,T,r,data):
 	    if (P < data or T<data or r > 6.95*10**9.):
-                    print(T,P,r)
 		    return True
 	    else:
 		    return False
@@ -69,28 +73,9 @@ while val < 1.:
 
     '''
 
-    val += 0.01
-    print(' optical depth:'+str(integrate(r,kappa_array,rho_array)))
-    print "radius", r[-1]
+#    print(' optical depth:'+str(integrate(r,kappa_array,rho_array)))
+#    print "radius", r[-1]
     print >> data, r[-1], M[-1], T[-1], L[-1]
     data.close()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
  
