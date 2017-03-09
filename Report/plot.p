@@ -10,6 +10,7 @@ set format x '$10^{%T}$'
 set format y '$10^{%T}$'
 
 set xr [*:*] reverse
+set key below #bottom left
 
 set output sprintf('./HR.tex')
 set grid front

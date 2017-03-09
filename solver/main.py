@@ -8,19 +8,20 @@ import numpy as np
 #Define all our constants. This is where we pass X, Y, Z
 initialize.init(0.7,0.25,0.05)
 val = np.logspace(-5., 5., 100)
-heh=1
+count = 1
+r_end = 10**10 #in units of m
 
 for i in val:
 
     print i, "solar initial conditions"
-    print heh, "out of 100"
-    heh += 1
+    print count, "out of 100"
+    count += 1
     # Initial core conditions of the star
-    P0=i*2.477 *10**16. #in units of pascal
-    M0=10**-4 #units of kg
-    L0=10**-4 #units of J/s or W
-    T0=i*1.571*10**7 #units of K
-    rho0=i*1.622*10**5 #units of kg/m^3
+    P0 = i*2.477 *10**16. # units of pascal
+    M0 = 10**-4 # units of kg
+    L0 = 10**-4 # units of J/s or W
+    T0 = i*1.571*10**7 # units of K
+    rho0 = i*1.622*10**5 #units of kg/m^3
 
     '''
     # Initial core conditions for the sun
@@ -32,8 +33,6 @@ for i in val:
     '''
 
     data = open('stars.dat','a')
-
-    r_end = 10**10 #in units of m
 
     def stop(P,M,L,T,r,data):
 	    if (P < data or T<data or r > 6.95*10**9.):
