@@ -1,4 +1,6 @@
 from math import sqrt
+from struct import pack, unpack
+import array
 
 class particle:
    def __init__(self, mass, position,velocity):
@@ -94,8 +96,6 @@ class universe:
          parts.append(particle.string_thing(f.readline()))
       return cls(n,t,parts,G)
 
-
-
    def write(self, name):
       f = open(name,"w")
       f.write("{0}\n{1}\n{2}\n".format(self.n,self.t,self.G))
@@ -103,7 +103,47 @@ class universe:
          f.write(str(self.parts[i])+"\n")
       f.close()
 
+   @classmethod
+   def readbinary(cls,fname):
+      f = open(fname, "rb")
+      n = unpack('<i',f.read(4))[0]
+      t = unpack('<d',f.read(8))[0]
+      a = array.array('f')
+      a.fromfile(f,7*n)
+      parts = []
+      
+      for i in range(0,n):
+         parts.append(particle(a[7*i],[a[7*i+1],a[7*i+2],a[7*i+3]],[a[7*i+4],a[7*i+5],a[7*i+6]]))
 
+      return cls(n,t,parts)
+
+   def writebinary(self, name):
+      f = open(name,"wb")
+      f.write(pack('<i',self.n))
+      f.write(pack('<d',self.t))
+      a = array.array('f')
+      for p in parts:     
+         a.fromlist([p.m, p.position[0], p.postion[1], p.position[2], p.velocity[0], p.velocity[1], p.velocity[2]])
+      a.tofile(f)
+      f.close()
+
+   def all_x(self):
+      x = []
+      for i in self.parts:
+         x.append(i.position[0])
+      return x
+
+   def all_y(self):
+      y = []
+      for i in self.parts:
+         y.append(i.position[1])
+      return y
+
+   def all_z(self):
+      z = []
+      for i in self.parts:
+         z.append(i.position[2])
+      return z
 
 
 def main():
