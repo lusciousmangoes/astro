@@ -2,3 +2,4 @@
 *.aux
 *.log
 *.gz
+/N-Body/Assignment1/*
