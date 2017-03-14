@@ -1,0 +1,19 @@
+File format is binary with each record consisting of:
+mass x y z vx vy vz
+
+Plus a header at the top:  N and time.
+
+The default is single precision. Add -DDOUBLE_PRECISION in the 
+Makefile to use double precision.
+
+The parameter file needs:
+input = <input file>
+output = <base for output>
+dt = <time step>
+eps = <softening length>
+steps = <number of steps>
+theta = <opening criteria>
+
+If theta < 0; a fixed opening criteria of -theta is used.
+If theta > 0; a dynamic opening criteria is used such that
+the maximum absolute force error is fixed.

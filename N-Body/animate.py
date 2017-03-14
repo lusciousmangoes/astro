@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from nbody import *
 from random import *
 import numpy as np
@@ -19,12 +21,12 @@ y = s.all_y()
 z = s.all_z()
 
 line, = ax.plot(x, y, z, color="black", marker="o", markersize=1, alpha=1, linestyle='none')
-ax.set_xlim(-10, 10)
-ax.set_ylim(-10, 10)
-ax.set_zlim(-10, 10)
+ax.set_xlim(-2, 2)
+ax.set_ylim(-2, 2)
+ax.set_zlim(-2, 2)
 
 def update(fname):
-    sleep(0.2)
+    sleep(0.05)
     s = universe.readbinary(fname)
     x = s.all_x()
     y = s.all_y()

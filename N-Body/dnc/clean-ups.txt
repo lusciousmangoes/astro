@@ -1,0 +1,25 @@
+* hard-code all floats and doubles (replace real -> float)
+* hard-code KEEP_ORDER
+* Remove all other ifdef statements
+* get rid of Doug's input method (go with input flags?)
+* clean up indents and notation and comments
+* get rid of massless particles
+* variable names better?
+
+DONE
+====
+
+* vectors.h and vector_math.h
+* particle_io.*
+* move.*
+* build_tree.*
+* calc_forces.*
+* dnc.*
+* Using getopt.h now
+
+STILL TO DO
+===========
+
+* some better variable names would be nice ...
+* test it!
+

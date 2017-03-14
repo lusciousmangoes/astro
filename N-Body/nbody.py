@@ -122,8 +122,8 @@ class universe:
       f.write(pack('<i',self.n))
       f.write(pack('<d',self.t))
       a = array.array('f')
-      for p in parts:     
-         a.fromlist([p.m, p.position[0], p.postion[1], p.position[2], p.velocity[0], p.velocity[1], p.velocity[2]])
+      for p in self.parts:     
+         a.fromlist([p.mass, p.position[0], p.position[1], p.position[2], p.velocity[0], p.velocity[1], p.velocity[2]])
       a.tofile(f)
       f.close()
 
