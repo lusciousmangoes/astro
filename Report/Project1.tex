@@ -47,10 +47,7 @@ In this project, we modelled a spherically symmetric, static star by numerically
 To perform the calculations we started from the core and integrated outward using the fourth order Runge-Kutta method. We specified a core pressure, core temperature, core density, and composition of the star. From there, the outward integration calculates total mass, luminosity, pressure, and temperature at every other radius. The integration stops when the boundary conditions are met, that is, the pressure goes to zero. Once this point is reached it means we are at the surface, we can take the temperature here, and use it for the HR diagram, Figure \ref{fig:code} shows samples of our code in greater detail. \\
 
 \begin{figure}[htbp]
- \begin{subfigure}{\textwidth}
-  \lstinputlisting[language=Python]{../solver/initialize.py}
-  \caption{All constants are declared in \emph{initialize.py}.}
- \end{subfigure} \\
+
  \begin{subfigure}{\textwidth}
   \lstinputlisting[language=Python, firstnumber=8, firstline=8, lastline=24]{../solver/main.py}
   \lstinputlisting[language=Python, firstnumber=35, firstline=35, lastline=35]{../solver/main.py}
