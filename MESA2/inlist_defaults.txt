@@ -1,0 +1,54 @@
+! MESA Revision 7624  
+! Part of MESA-Web (c) Fields, C. E. & Timmes, F. X. 2015-2016 (http://mesa-web.asu.edu)
+! Cite/offer co-authorship when appropriate.
+! Questions/Comments: m e s a - w e b - i n f o (at) asu (dot) edu
+!-----------------------------------------------------------------------------------
+
+&star_job
+
+      create_pre_main_sequence_model = .true.
+      pre_ms_relax_num_steps = 10
+      set_initial_age = .true.
+      initial_age = 0 ! in years
+      set_initial_model_number = .true.
+      initial_model_number = 0
+      change_initial_net = .true.      
+      new_net_name = 'agb.net'
+      new_omega_div_omega_crit = 0.0
+      set_near_zams_omega_div_omega_crit_steps = 50
+      pgstar_flag = .true.
+
+/ !end of star_job namelist
+
+&controls
+
+  ! starting specifications
+
+      initial_mass = 0.2 ! in Msun units
+      initial_z = 0.0003  
+      max_num_profile_models = -1
+      RGB_wind_scheme = 'Reimers'
+      Reimers_wind_eta = 0.5
+      AGB_wind_scheme = 'Blocker'
+      Blocker_wind_eta = 0.1
+      profile_interval = 100
+      history_interval = 1
+      terminal_cnt = 10000000
+      write_header_frequency = 1000000
+      photostep = 500000
+      max_age = 1d99
+      varcontrol_target = 1d-4
+      mesh_delta_coeff = 1.0
+      dX_nuc_drop_min_X_limit = 1d-4
+      mixing_length_alpha = 2.0
+      MLT_option = 'Cox'
+
+      am_D_mix_factor = 0.033333333d0
+      D_DSI_factor = 1
+      D_SH_factor  = 1
+      D_SSI_factor = 1
+      D_ES_factor  = 1
+      D_GSF_factor = 1
+      D_ST_factor  = 1
+
+/ ! end of controls namelist
