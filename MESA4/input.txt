@@ -1,0 +1,35 @@
+Job #0315153604 was calculated using the following input parameters:
+
+---------------------------------------------
+Initial Mass: 2.2 (solar mass)
+
+Nuclear Reaction Network: agb.net
+
+Initial Metallicity: 0.01
+
+Mixing Length Alpha: 2.0
+
+Mixing Length Theory Implementation: Cox
+
+Red Giant Branch Wind Scheme: Reimers
+
+RGB Wind Eta: 0.5 
+
+Asymptotic Giant Branch Wind Scheme: Blocker
+
+AGB Wind Eta: 0.1 
+
+Initial Rotational Value: 0.0 (omega_initial/omega_critical)
+
+Variance Control Target: 1d-4
+
+Mesh Delta Coefficient: 1.0
+
+dX_nuc_drop_min_X_limit: 1d-4
+
+---------------------------------------------
+Your model completed with the following termination code:
+Calculation time limit of 60m reached
+---------------------------------------------
+
+Thank you for using MESA-Web! 
