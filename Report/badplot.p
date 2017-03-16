@@ -9,12 +9,16 @@ set logscale xyz
 set format x '$10^{%T}$'
 set format y '$10^{%T}$'
 
+
+#set logscale cb
+#set cbrange[10**6:10**9]
+
 set xr [*:*] reverse
 set key below #bottom left
 
 set output sprintf('./badHR.tex')
 set grid front
-plot '../solver/stars_log.dat' using 3:($4/(3.848*10**26)) title '' lc 8 lt 7 lw 1, \
-'../solver/stars_linear.dat' using 3:($4/(3.848*10**26)) title '' lc 8 lt 7 lw 1
+plot '../solver/stars_linear.dat' using 3:($4/(3.848*10**26)):2 lc 8 lt 7 lw 1 notitle, \
+'../solver/stars_log.dat' using 3:($4/(3.848*10**26)):2 lc 8 lt 7 lw 1 notitle
 set out
 

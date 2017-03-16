@@ -14,17 +14,15 @@ set key below #bottom left
 
 set output sprintf('./HR.tex')
 set grid front
-plot '../MESA-Web_Job/HR.dat' using 2:1 title 'MESA star' lc 'olive' lt 8 lw 1, \
-'../MESA-Web_job_1-solar-mass-2percent-metalicity/HR.dat' using 2:1 title 'MESA star' lc 'cyan' lt 8 lw 1, \
-'../MESA-Web_Job_100_solar_mass/HR.dat' using 2:1 title 'MESA star' lc 'blue' lt 8 lw 1, \
-'../MESA-Web_Job_0226165219/HR.dat' using 2:1 title 'MESA star' lc 'green' lt 8 lw 1, \
-'../MESA-Web_job_point4-solar-mass-point4percent-metalicity/HR.dat' using 2:1 title 'MESA star' lc 'yellow' lt 8 lw 1, \
-'../MESA/HR.dat' using 2:1 title 'MESA star' lc 'orange' lt 8 lw 1, \
-'../MESA2/HR.dat' using 2:1 title 'MESA star' lc 'red' lt 8 lw 1, \
-'../MESA3/HR.dat' using 2:1 title 'MESA star' lc 'navy' lt 8 lw 1, \
-'../MESA4/HR.dat' using 2:1 title 'MESA star' lc 'violet' lt 8 lw 1, \
-'../MESA5/HR.dat' using 2:1 title 'MESA star' lc 'brown' lt 8 lw 1, \
-'../solver/real_stars.dat' using 1:2 title 'Real Stars' lc 'magenta' lt 7 lw 1, \
+plot '../MESA-Web_job_1-solar-mass-2percent-metalicity/HR.dat' using 2:1 notitle with linespoints lc 'cyan' lt -1 lw 5, \
+'../MESA-Web_Job_0226165219/HR.dat' using 2:1 notitle with linespoints lc 'green' lt -1 lw 5, \
+'../MESA-Web_job_point4-solar-mass-point4percent-metalicity/HR.dat' using 2:1 notitle with linespoints lc 'yellow' lt -1 lw 5, \
+'../MESA/HR.dat' using 2:1 notitle with linespoints lc 'orange' lt -1 lw 5, \
+'../MESA2/HR.dat' using 2:1 notitle with linespoints lc 'red' lt -1 lw 5, \
+'../MESA3/HR.dat' using 2:1 notitle with linespoints lc 'navy' lt -1 lw 5, \
+'../MESA4/HR.dat' using 2:1 title 'MESA star' with linespoints lt -1 lw 5, \
+'../MESA5/HR.dat' using 2:1 notitle with linespoints lc 'brown' lt -1 lw 5, \
+'../solver/real_stars.dat' using 1:2 title 'Real Stars' lc 'magenta' lt 7 lw 1 ps 1.7, \
 '../solver/stars.dat' using 3:($4/(3.848*10**26)) title 'Simulated Stars' lc 8 lt 7 lw 1
 set out
 
