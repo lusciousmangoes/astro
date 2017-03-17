@@ -84,20 +84,20 @@ Figure \ref{fig:sun} shows our results using the initial conditions of the core 
 
 Knowing our model works generally, but not perfectly, we went ahead and used it on other initial conditions, to create other stars. Doing so, should produce a general form of the main sequence on an HR diagram. An HR diagram is a log plot of the luminosity vs. effective temperature. The effective temperature is observationally found by matching the color of a star with the temperature on a blackbody curve that emits that color the most. Due to this, the temperature measured observationally it is not the surface temperature, rather, the temperature from a depth related to the optical depth inside the star. Our attempts to calculate the optical depths of our stars resulted in wildly large values that were thousands of times larger than the star itself. However, during our integrations the pressure was going to zero, and the surface temperature did not. We then decided to use this temperature in place of the effective temperature. This is not perfect, but should still give us a good relationship between different stars' temperatures. Our first attempt at an HR diagram used all of the raw data and is shown in Figure \ref{fig:badHR}. \\
 
-The first obvious thing that you'll notice is that the stars seem to have four distinct categories. A small group with high temperatures and luminosities, two groups with low temperatures and luminosities, and a large group somewhere in the middle. To help make some sense of what was going on, we have included the radii of the stars on a new plot, shown in Figure \ref{fig:nosobadHR}. \\
+The first obvious thing that you'll notice is that the stars seem to have four distinct categories. A small group with high temperatures and luminosities, two groups with low temperatures and luminosities, and a large group somewhere in the middle. To help make some sense of what was going on, we have included the radii of the stars on a new plot, also shown in Figure \ref{fig:nosobadHR}. \\
 
 \begin{figure}[p]
 \centering
 \begin{subfigure}{\textwidth}
 \centering
 \input{./badHR}
-\caption{A crappy version of HR.}
+\caption{First attempt at HR, uses all data.}
 \label{fig:badHR}
 \end{subfigure} \\
 \begin{subfigure}{\textwidth}
 \centering
 \includegraphics[height=0.4\textheight]{new_bad_hr.pdf}
-\caption{A crappy version of HR with radii.}
+\caption{Another look at HR with radii.}
 \label{fig:nosobadHR}
 \end{subfigure}
 \caption{First attempts at an HR diagram.}
@@ -120,7 +120,7 @@ We really enjoyed working on this project. It was very satisfying to work with a
 \begin{figure}[p]
 \begin{centering}
 \input{./HR}
-\caption{Our reproduction of the HR diagram.}
+\caption{Our reproduction of the HR diagram plotted against real star data, and MESA stars.}
 \label{fig:HR}
 \end{centering}
 \end{figure}
