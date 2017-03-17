@@ -1,5 +1,5 @@
 #set terminal pngcairo size 700,524 enhanced font 'Verdana,10'
-set terminal epslatex color size 6.0in,4.5in
+set terminal epslatex color size 4.8in,3.6in
 
 set notitle
 set xlabel '$T$ (K)'
