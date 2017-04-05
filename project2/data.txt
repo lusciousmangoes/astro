@@ -1,0 +1,13 @@
+H0 73.8km/s/Mpc
+Density parameter for matter 0.27
+Density parameter for cosmo constant 0.73
+omega total 1.02
+
+critical density 
+matter density = density parameter*critical density
+current age = 1/H0
+age at z=50 = 
+
+dimensions of box 50Mpc x 50Mpc x 50Mpc
+mass in box = matter density*V
+
