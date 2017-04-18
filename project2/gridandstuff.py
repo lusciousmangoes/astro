@@ -14,6 +14,7 @@ a = 1.0 / (1+z)
 da = 0.01
 dx = box_size/Ncells
 rho_0 = u.n/Ncells**3
+count = 0
 
 #Declare arrays
 grid = np.zeros((Ncells,Ncells,Ncells))
@@ -65,10 +66,11 @@ while a <= 1.0:
 	u.leapfrog_velocity_update(da)
 	accels_grid()
 	u.leapfrog_velocity_update(da)
-	u.write('./Data/universe{0:05d}.dat')
+	u.write('./Data/universe{0:05d}.dat'.format(count))
 	
 	print('Current time: ', a)
 	a += da
+	count += 1
 	
 	
 
