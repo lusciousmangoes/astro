@@ -1,0 +1,10 @@
+Method for simulation
+
+Place particles in cells of grid
+Calculate delta from density of cells
+FFT delta
+Calculate transformed phi from transformed delta
+iFFT phi
+Calculate accelerations from phi
+Update positions and velocities
+Repeat!
