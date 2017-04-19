@@ -4,8 +4,8 @@ import numpy as np
 
 #Read in initial conditions
 box_size = 50
-u = universe.readbinary('randomic.dat')
-#u = universe.readbinary('init_L1.dat',scale=box_size)
+#u = universe.readbinary('randomic.dat')
+u = universe.readbinary('init_L1.dat',scale=box_size)
 
 #Declare parameters
 Ncells = 2 * int(np.ceil((u.n)**(1/3)))

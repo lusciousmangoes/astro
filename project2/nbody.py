@@ -7,7 +7,7 @@ class particle:
       self.mass = mass
       self.position = position
       self.velocity = velocity
-      self.accel =[0,0,0]
+      self.accel = [0,0,0]
 
    def x(self):
       return self.position[0]
@@ -115,7 +115,7 @@ class universe:
       parts = []
       
       for i in range(0,n):
-         parts.append(particle(a[7*i],scale*[a[7*i+1],scale*a[7*i+2],scale*a[7*i+3]],[a[7*i+4],a[7*i+5],a[7*i+6]]))
+         parts.append(particle(a[7*i],[scale*a[7*i+1],scale*a[7*i+2],scale*a[7*i+3]],[a[7*i+4],a[7*i+5],a[7*i+6]]))
 
       return cls(n,t,parts)
 
