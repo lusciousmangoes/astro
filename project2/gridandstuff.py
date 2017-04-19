@@ -7,11 +7,11 @@ u = universe.readbinary('randomic.dat')
 
 #Declare parameters
 box_size = 50
-Ncells = 32
+Ncells = 64
 omega = 0.27
 z = 50
 a = 1.0 / (1+z)
-da = 0.005
+da = 0.0025
 dx = box_size/Ncells
 rho_0 = u.n/Ncells**3
 count = 0

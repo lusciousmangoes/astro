@@ -3,7 +3,7 @@ from random import *
 import numpy as np
 
 box_size = 50
-N=16**3
+N=32**3
 H0 = 73.8 *((3.086**-1)*10**-19)
 G = 6.674*10**-11
 rho = 0.27*(3*H0**2)/(8*np.pi*G)
