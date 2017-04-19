@@ -12,22 +12,23 @@ rho = 0.27*(3*H0**2)/(8*np.pi*G)
 V=(box_size)*(box_size)*(box_size)
 m = rho*V/N
 p = box_size/Ncells/2
-x=p
-y=p
-z=p
-i=0
-print(N)
-while i<N:
-	while x<(box_size-2*p):
-		while y<(box_size-2*p):
-			while z<(box_size-2*p):
-				part.append(particle(m,[x,y,z],[0.,0.,0.]))
-				z+=p*2
-			y+=p*2
-		x+=p*2
-	N+=1
+
+
+x=np.linspace(0,box_size,Ncells)
+y=np.linspace(0,box_size,Ncells)
+z=np.linspace(0,box_size,Ncells)
+
+print x
+
+
+for i in range(len(x)):
+	for j in range(len(y)):
+		for k in range(len(z)):
+			part.append(particle(m,[x[i],y[j],z[k]],[0.,0.,0.]))
+
+
 
 u=universe(N,0.,part)
 
-u.writebinary('randomic_ordered.dat')
+u.write('randomic_ordered.dat')
 
