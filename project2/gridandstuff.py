@@ -22,7 +22,6 @@ rho_0 = u.n/float(Ncells)**3
 count = 0
 
 #Declare arrays
-grid = np.zeros((Ncells,Ncells,Ncells))
 phi_fft = np.zeros((Ncells,Ncells,Ncells),dtype=complex)
 
 def G(l,m,n):
@@ -34,10 +33,12 @@ def G(l,m,n):
 
 def get_grid():
 	#Calculates density of each cell
+	global grid
+	grid = np.zeros((Ncells,Ncells,Ncells))
 	for i in range(0,u.n):
 		x,y,z = u.parts[i].position
 		grid[int(x//dx)][int(y//dx)][int(z//dx)] += 1
-	
+
 def get_delta():
 	#Calculate perturbations in density
 	return (grid/rho_0) - 1
@@ -63,7 +64,7 @@ def accels_grid():
 		p_i.accel[1] = (-1.0/2.0) * (phi[int(x//dx)][(int(y//dx)+1) % Ncells][int(z//dx)] - phi[int(x//dx)][(int(y//dx)-1) % Ncells][int(z//dx)])	
 		p_i.accel[2] = (-1.0/2.0) * (phi[int(x//dx)][int(y//dx)][(int(z//dx)+1) % Ncells] - phi[int(x//dx)][int(y//dx)][(int(z//dx)-1) % Ncells])
 		temp += sqrt(p_i.accel[0]**2 + p_i.accel[1]**2 + p_i.accel[2]**2)
-	print temp / u.n
+	print(temp / float(u.n))
 
 
 #Main loop
@@ -87,9 +88,8 @@ while a <= 1.0:
 	u.write('./Data/universe{0:05d}.dat'.format(count))
 	
 	#Print current step and increment values
-#	print('Current a: ', round(a,3), end='\r')
+	print('Current a: ', round(a,3))
 #	print phi
 	a += da/2.
 	count += 1
-	print a
-
+	#print(a)
