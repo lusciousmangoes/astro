@@ -14,7 +14,7 @@ omega_V = 0.7
 omega_k = 1 - omega_m - omega_V
 z = 50
 a = 1.0 / (1+z)
-da = 0.001
+da = 0.0025
 dx = box_size/Ncells
 rho_0 = u.n/Ncells**3
 count = 0
@@ -28,11 +28,10 @@ def G(l,m,n):
 	if l == 0 and m == 0 and n == 0:
 		return 0
 	else:
-		return -3 * omega_m/(8*a) * (1/(np.sin(np.pi*l/Ncells)**2+np.sin(np.pi*m/Ncells)**2+np.sin(np.pi*n/Ncells)**2))
+		return -3 * omega/(8*a) * (1/(np.sin(np.pi*l/Ncells)**2+np.sin(np.pi*m/Ncells)**2+np.sin(np.pi*n/Ncells)**2))
 
 def get_grid():
 	#Calculates density of each cell
-	grid = np.zeros((Ncells,Ncells,Ncells))
 	for i in range(0,u.n):
 		x,y,z = u.parts[i].position
 		grid[int(x//dx)][int(y//dx)][int(z//dx)] += 1
@@ -61,20 +60,6 @@ def accels_grid():
 		p_i.accel[1] = (-1.0/2.0) * (phi[int(x//dx)][(int(y//dx)+1) % Ncells][int(z//dx)] - phi[int(x//dx)][(int(y//dx)-1) % Ncells][int(z//dx)])	
 		p_i.accel[2] = (-1.0/2.0) * (phi[int(x//dx)][int(y//dx)][(int(z//dx)+1) % Ncells] - phi[int(x//dx)][int(y//dx)][(int(z//dx)-1) % Ncells])
 
-def leapfrog_position_update(dt,mod=False,base=0):
-	for i in range(0,u.n):
-		p_i = u.parts[i]
-		for k in range(3):
-			p_i.position[k] += dt*p_i.velocity[k]/a**2
-			if mod:
-				p_i.position[k] = p_i.position[k] % base
-
-def leapfrog_velocity_update(dt):
-	for i in range(0,u.n):
-		p_i = u.parts[i]
-		for k in range(3):
-			p_i.velocity[k] += 0.5*p_i.accel[k]*dt   
-
 #Main loop
 while a <= 1.0:
 	#Calculate potential
@@ -82,13 +67,13 @@ while a <= 1.0:
 	phi = get_phi(np.fft.fftn(get_delta()))
 
 	f = ((1/a)*(omega_m + omega_k*a + omega_V*a**3))**(-1/2)
-
-	#Update position and velocity from potential
+	
 	dt=da*f
-	leapfrog_position_update(dt,mod=True,base=box_size)
-	leapfrog_velocity_update(dt)
+	#Update position and velocity from potential
+	u.leapfrog_position_update(dt,mod=True,base=box_size)
+	u.leapfrog_velocity_update(dt)
 	accels_grid()
-	leapfrog_velocity_update(dt)
+	u.leapfrog_velocity_update(dt)
 	u.write('./Data/universe{0:05d}.dat'.format(count))
 	
 	#Print current step and increment values
