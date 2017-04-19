@@ -3,11 +3,12 @@ from random import *
 import numpy as np
 
 #Read in initial conditions
+box_size = 50
 u = universe.readbinary('randomic.dat')
+#u = universe.readbinary('init_L1.dat',scale=box_size)
 
 #Declare parameters
-box_size = 50
-Ncells = 64
+Ncells = 2 * int(np.ceil((u.n)**(1/3)))
 omega = 0.27
 z = 50
 a = 1.0 / (1+z)
@@ -15,6 +16,8 @@ da = 0.0025
 dx = box_size/Ncells
 rho_0 = u.n/Ncells**3
 count = 0
+
+print(Ncells)
 
 #Declare arrays
 grid = np.zeros((Ncells,Ncells,Ncells))
@@ -62,7 +65,7 @@ while a <= 1.0:
 	get_grid()
 	phi = get_phi(np.fft.fftn(get_delta())) #Calculate phi from the Fourier transform of delta
 
-	u.leapfrog_position_update(da)
+	u.leapfrog_position_update(da,mod=True,base=box_size)
 	u.leapfrog_velocity_update(da)
 	accels_grid()
 	u.leapfrog_velocity_update(da)

@@ -72,12 +72,13 @@ class universe:
             self.U += -self.G * p_i.mass*p_j.mass/r
          self.T += 0.5*p_i.mass*p_i.vel2()
               
-   def leapfrog_position_update(self,dt):
+   def leapfrog_position_update(self,dt,mod=False,base=0):
       for i in range(0,self.n):
          p_i = self.parts[i]
          for k in range(3):
             p_i.position[k] += p_i.velocity[k]*dt+0.5*p_i.accel[k]*dt**2
-            p_i.position[k] =  p_i.position[k] % 50
+            if mod:
+               p_i.position[k] = p_i.position[k] % base
 
    def leapfrog_velocity_update(self,dt):
       for i in range(0,self.n):
@@ -105,7 +106,7 @@ class universe:
       f.close()
 
    @classmethod
-   def readbinary(cls,fname):
+   def readbinary(cls,fname,scale=1):
       f = open(fname, "rb")
       n = unpack('<i',f.read(4))[0]
       t = unpack('<d',f.read(8))[0]
@@ -114,7 +115,7 @@ class universe:
       parts = []
       
       for i in range(0,n):
-         parts.append(particle(a[7*i],[a[7*i+1],a[7*i+2],a[7*i+3]],[a[7*i+4],a[7*i+5],a[7*i+6]]))
+         parts.append(particle(a[7*i],scale*[a[7*i+1],scale*a[7*i+2],scale*a[7*i+3]],[a[7*i+4],a[7*i+5],a[7*i+6]]))
 
       return cls(n,t,parts)
 
