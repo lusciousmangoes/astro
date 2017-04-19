@@ -72,22 +72,18 @@ class universe:
             self.U += -self.G * p_i.mass*p_j.mass/r
          self.T += 0.5*p_i.mass*p_i.vel2()
               
-   def leapfrog_position_update(self,dt,a,mod=False,base=0):
+   def leapfrog_position_update(self,dt,a,base):
       for i in range(0,self.n):
          p_i = self.parts[i]
          for k in range(3):
-
             p_i.position[k] += dt*p_i.velocity[k]/a**2
-
-            if mod:
-               p_i.position[k] = p_i.position[k] % base
+            p_i.position[k] = p_i.position[k] % base
 
    def leapfrog_velocity_update(self,dt):
       for i in range(0,self.n):
          p_i = self.parts[i]
          for k in range(3):
-            p_i.velocity[k] += 0.5*p_i.accel[k]*dt    
-
+            p_i.velocity[k] += 0.5*p_i.accel[k]*dt
 
    @classmethod
    def read(cls,fname):

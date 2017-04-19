@@ -16,13 +16,16 @@ omega_V = 0.7
 omega_k = 1 - omega_m - omega_V
 z = 50
 a = 1.0 / (1.+z)
-da = 0.001
+da = 0.05
 dx = box_size/float(Ncells)
 rho_0 = u.n/float(Ncells)**3
 count = 0
 
 #Declare arrays
 phi_fft = np.zeros((Ncells,Ncells,Ncells),dtype=complex)
+
+def f(a):
+	return ((1./a)*(omega_m + omega_k*a + omega_V*a**3))**(-1/2.)
 
 def G(l,m,n):
 	#Function for calculating phi from delta
@@ -72,24 +75,26 @@ while a <= 1.0:
 	#Calculate potential
 	get_grid()
 	phi = get_phi(np.fft.fftn(get_delta()))
-
-	f = ((1./a)*(omega_m + omega_k*a + omega_V*a**3))**(-1/2.)
 	
-	dt=da*f
 	#Update position and velocity from potential
-	u.leapfrog_position_update(dt,a,mod=True,base=box_size)
+	dt = da*f(a)
 	u.leapfrog_velocity_update(dt)
+	u.leapfrog_position_update(dt,a,box_size)
+
+	a += da / 2.0
+	dt = da*f(a)
 	accels_grid()
-	a+=da/2.
-	f = ((1./a)*(omega_m + omega_k*a + omega_V*a**3))**(-1/2.)
-	dt=da*f
-	u.leapfrog_position_update(dt,a,mod=True,base=box_size)
 	u.leapfrog_velocity_update(dt)
+
 	u.write('./Data/universe{0:05d}.dat'.format(count))
 	
 	#Print current step and increment values
 	print('Current a: ', round(a,3))
-#	print phi
-	a += da/2.
+
+	a += da / 2.
 	count += 1
-	#print(a)
+
+
+
+
+
