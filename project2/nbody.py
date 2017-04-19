@@ -76,7 +76,6 @@ class universe:
       for i in range(0,self.n):
          p_i = self.parts[i]
          for k in range(3):
-# changed from this line           p_i.position[k] += p_i.velocity[k]*dt+0.5*p_i.accel[k]*dt**2
 
             p_i.position[k] += dt*p_i.velocity[k]/a**2
 

@@ -16,7 +16,7 @@ omega_V = 0.7
 omega_k = 1 - omega_m - omega_V
 z = 50
 a = 1.0 / (1.+z)
-da = 0.0025
+da = 0.001
 dx = box_size/float(Ncells)
 rho_0 = u.n/float(Ncells)**3
 count = 0
@@ -51,6 +51,7 @@ def get_phi(FFT):
 	return np.fft.ifftn(phi_fft).real
 
 def accels_grid():
+	temp = 0
 	#Update acceleration of particles
 	for N in range(0,u.n):
 		u.parts[N].accel = [0.,0.,0.]
@@ -61,6 +62,9 @@ def accels_grid():
 		p_i.accel[0] = (-1.0/2.0) * (phi[(int(x//dx)+1) % Ncells][int(y//dx)][int(z//dx)] - phi[(int(x//dx)-1) % Ncells][int(y//dx)][int(z//dx)])
 		p_i.accel[1] = (-1.0/2.0) * (phi[int(x//dx)][(int(y//dx)+1) % Ncells][int(z//dx)] - phi[int(x//dx)][(int(y//dx)-1) % Ncells][int(z//dx)])	
 		p_i.accel[2] = (-1.0/2.0) * (phi[int(x//dx)][int(y//dx)][(int(z//dx)+1) % Ncells] - phi[int(x//dx)][int(y//dx)][(int(z//dx)-1) % Ncells])
+		temp += sqrt(p_i.accel[0]**2 + p_i.accel[1]**2 + p_i.accel[2]**2)
+	print temp / u.n
+
 
 #Main loop
 while a <= 1.0:
@@ -83,10 +87,5 @@ while a <= 1.0:
 #	print phi
 	a += da
 	count += 1
-	
-	
-
-
-
-
+	print a
 
