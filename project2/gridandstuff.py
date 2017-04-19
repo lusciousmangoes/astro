@@ -16,13 +16,15 @@ omega_V = 0.7
 omega_k = 1 - omega_m - omega_V
 z = 50
 a = 1.0 / (1.+z)
-da = 0.05
+da = 0.0025
 dx = box_size/float(Ncells)
 rho_0 = u.n/float(Ncells)**3
 count = 0
 
 #Declare arrays
 phi_fft = np.zeros((Ncells,Ncells,Ncells),dtype=complex)
+
+avga = open('Acceleration.dat', 'w')
 
 def f(a):
 	return ((1./a)*(omega_m + omega_k*a + omega_V*a**3))**(-1/2.)
@@ -67,7 +69,7 @@ def accels_grid():
 		p_i.accel[1] = (-1.0/2.0) * (phi[int(x//dx)][(int(y//dx)+1) % Ncells][int(z//dx)] - phi[int(x//dx)][(int(y//dx)-1) % Ncells][int(z//dx)])	
 		p_i.accel[2] = (-1.0/2.0) * (phi[int(x//dx)][int(y//dx)][(int(z//dx)+1) % Ncells] - phi[int(x//dx)][int(y//dx)][(int(z//dx)-1) % Ncells])
 		temp += sqrt(p_i.accel[0]**2 + p_i.accel[1]**2 + p_i.accel[2]**2)
-	print(temp / float(u.n))
+	avga.write(str(a) + ' ' + str(temp / float(u.n)) + '\n')
 
 
 #Main loop
@@ -78,6 +80,7 @@ while a <= 1.0:
 	
 	#Update position and velocity from potential
 	dt = da*f(a)
+	accels_grid()
 	u.leapfrog_velocity_update(dt)
 	u.leapfrog_position_update(dt,a,box_size)
 
@@ -93,6 +96,8 @@ while a <= 1.0:
 
 	a += da / 2.
 	count += 1
+
+avga.close()
 
 
 
