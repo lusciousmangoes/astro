@@ -79,13 +79,17 @@ while a <= 1.0:
 	u.leapfrog_position_update(dt,a,mod=True,base=box_size)
 	u.leapfrog_velocity_update(dt)
 	accels_grid()
+	a+=da/2.
+	f = ((1./a)*(omega_m + omega_k*a + omega_V*a**3))**(-1/2.)
+	dt=da*f
+	u.leapfrog_position_update(dt,a,mod=True,base=box_size)
 	u.leapfrog_velocity_update(dt)
 	u.write('./Data/universe{0:05d}.dat'.format(count))
 	
 	#Print current step and increment values
 #	print('Current a: ', round(a,3), end='\r')
 #	print phi
-	a += da
+	a += da/2.
 	count += 1
 	print a
 
