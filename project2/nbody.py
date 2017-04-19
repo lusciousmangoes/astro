@@ -77,7 +77,7 @@ class universe:
          p_i = self.parts[i]
          for k in range(3):
             p_i.position[k] += p_i.velocity[k]*dt+0.5*p_i.accel[k]*dt**2
-            p_i.position[k] =  p_i.position[k] % 16
+            p_i.position[k] =  p_i.position[k] % 50
 
    def leapfrog_velocity_update(self,dt):
       for i in range(0,self.n):
