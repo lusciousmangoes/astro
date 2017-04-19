@@ -5,7 +5,9 @@ import numpy as np
 #Read in initial conditions
 box_size = 50
 #u = universe.readbinary('randomic.dat')
+#u = universe.readbinary('randomic_ordered.dat')
 u = universe.readbinary('init_L1.dat',scale=box_size)
+
 
 #Declare parameters
 Ncells = 2 * int(round((u.n)**(1./3.),1))
@@ -13,7 +15,7 @@ omega_m = 0.3
 omega_V = 0.7
 omega_k = 1 - omega_m - omega_V
 z = 50
-a = 1.0 / (1+z)
+a = 1.0 / (1.+z)
 da = 0.0025
 dx = box_size/float(Ncells)
 rho_0 = u.n/float(Ncells)**3
@@ -28,7 +30,7 @@ def G(l,m,n):
 	if l == 0 and m == 0 and n == 0:
 		return 0
 	else:
-		return -3 * omega_m/(8*a) * (1/(np.sin(np.pi*l/Ncells)**2+np.sin(np.pi*m/Ncells)**2+np.sin(np.pi*n/Ncells)**2))
+		return -3. * omega_m/(8.*a) * (1./(np.sin(np.pi*l/Ncells)**2+np.sin(np.pi*m/Ncells)**2.+np.sin(np.pi*n/Ncells)**2.))
 
 def get_grid():
 	#Calculates density of each cell
@@ -70,7 +72,7 @@ while a <= 1.0:
 	
 	dt=da*f
 	#Update position and velocity from potential
-	u.leapfrog_position_update(dt,mod=True,base=box_size)
+	u.leapfrog_position_update(dt,a,mod=True,base=box_size)
 	u.leapfrog_velocity_update(dt)
 	accels_grid()
 	u.leapfrog_velocity_update(dt)

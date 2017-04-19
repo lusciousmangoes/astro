@@ -14,9 +14,9 @@ m = rho*V/N
 p = box_size/Ncells/2
 
 
-x=np.linspace(0,box_size,Ncells)
-y=np.linspace(0,box_size,Ncells)
-z=np.linspace(0,box_size,Ncells)
+x=np.linspace(0,box_size,Ncells,endpoint=False)
+y=np.linspace(0,box_size,Ncells,endpoint=False)
+z=np.linspace(0,box_size,Ncells,endpoint=False)
 
 print x
 
@@ -30,5 +30,5 @@ for i in range(len(x)):
 
 u=universe(N,0.,part)
 
-u.write('randomic_ordered.dat')
+u.writebinary('randomic_ordered.dat')
 
