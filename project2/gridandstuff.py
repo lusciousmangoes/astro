@@ -5,15 +5,15 @@ import numpy as np
 print('Initializing...')
 #Read in initial conditions
 box_size = 50
-#u = universe.readbinary('randomic.dat')
+u = universe.readbinary('randomic.dat')
 #u = universe.readbinary('randomic_ordered.dat')
-u = universe.readbinary('init_L1.dat',scale=box_size)
+#u = universe.readbinary('init_L1.dat',scale=box_size)
 
 
 #Declare parameters
-Ncells = 1 * int(round((u.n)**(1./3.),1))
-omega_m = 3.0
-omega_V = 7.0
+Ncells = 2 * int(round((u.n)**(1./3.),1))
+omega_m = 0.3
+omega_V = 0.7
 omega_k = 1 - omega_m - omega_V
 #omega_k = 1.0
 z = 50
@@ -92,7 +92,7 @@ while a <= 1.0:
 	accels_grid()
 	u.leapfrog_velocity_update(dt)
 
-	u.write('./Data/universe{0:05d}.dat'.format(count))
+	u.write('./RandomData/universe{0:05d}.dat'.format(count))
 	
 	#Print current step and increment values
 	print('Current a: ', round(a,3), '\t', round(100*a,3), '%', end='\r')
