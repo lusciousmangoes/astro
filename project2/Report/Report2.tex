@@ -1,0 +1,35 @@
+\documentclass[10pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{xcolor,graphicx}
+%\usepackage{wrapfig}
+\usepackage{subcaption}
+%\usepackage{hyperref}
+
+\title{Simulating the Universe}
+\author{Najla Alhamadi, Michael Cock, Rebecca Halloran, Brady Metherall, Hector Robinson}
+
+\newgeometry{margin=1in}
+\setlength\parindent{0pt}
+
+\begin{document}
+\maketitle
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}{\textwidth}
+\centering
+\input{Control}
+\caption{Top-down view.}
+\end{subfigure} \\
+\begin{subfigure}{\textwidth}
+\centering
+\input{Control3D}
+\caption{3D view.}
+\end{subfigure}
+\caption{Control simulation.}
+\end{figure}
+
+\end{document}

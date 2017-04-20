@@ -2,6 +2,7 @@ from nbody import *
 from random import *
 import numpy as np
 
+print('Initializing...')
 #Read in initial conditions
 box_size = 50
 #u = universe.readbinary('randomic.dat')
@@ -10,10 +11,11 @@ u = universe.readbinary('init_L1.dat',scale=box_size)
 
 
 #Declare parameters
-Ncells = 2 * int(round((u.n)**(1./3.),1))
-omega_m = 0.3
-omega_V = 0.7
+Ncells = 1 * int(round((u.n)**(1./3.),1))
+omega_m = 3.0
+omega_V = 7.0
 omega_k = 1 - omega_m - omega_V
+#omega_k = 1.0
 z = 50
 a = 1.0 / (1.+z)
 da = 0.0025
@@ -24,7 +26,7 @@ count = 0
 #Declare arrays
 phi_fft = np.zeros((Ncells,Ncells,Ncells),dtype=complex)
 
-avga = open('Acceleration.dat', 'w')
+#avga = open('Acceleration.dat', 'w')
 
 def f(a):
 	return ((1./a)*(omega_m + omega_k*a + omega_V*a**3))**(-1/2.)
@@ -57,7 +59,7 @@ def get_phi(FFT):
 	return np.fft.ifftn(phi_fft).real
 
 def accels_grid():
-	temp = 0
+	#temp = 0
 	#Update acceleration of particles
 	for N in range(0,u.n):
 		u.parts[N].accel = [0.,0.,0.]
@@ -68,11 +70,12 @@ def accels_grid():
 		p_i.accel[0] = (-1.0/2.0) * (phi[(int(x//dx)+1) % Ncells][int(y//dx)][int(z//dx)] - phi[(int(x//dx)-1) % Ncells][int(y//dx)][int(z//dx)])
 		p_i.accel[1] = (-1.0/2.0) * (phi[int(x//dx)][(int(y//dx)+1) % Ncells][int(z//dx)] - phi[int(x//dx)][(int(y//dx)-1) % Ncells][int(z//dx)])	
 		p_i.accel[2] = (-1.0/2.0) * (phi[int(x//dx)][int(y//dx)][(int(z//dx)+1) % Ncells] - phi[int(x//dx)][int(y//dx)][(int(z//dx)-1) % Ncells])
-		temp += sqrt(p_i.accel[0]**2 + p_i.accel[1]**2 + p_i.accel[2]**2)
-	avga.write(str(a) + ' ' + str(temp / float(u.n)) + '\n')
+		#temp += sqrt(p_i.accel[0]**2 + p_i.accel[1]**2 + p_i.accel[2]**2)
+	#avga.write(str(a) + ' ' + str(temp / float(u.n)) + '\n')
 
 
 #Main loop
+print('Done!\nBeginning Simulation')
 while a <= 1.0:
 	#Calculate potential
 	get_grid()
@@ -92,7 +95,7 @@ while a <= 1.0:
 	u.write('./Data/universe{0:05d}.dat'.format(count))
 	
 	#Print current step and increment values
-	print('Current a: ', round(a,3))
+	print('Current a: ', round(a,3), '\t', round(100*a,3), '%', end='\r')
 
 	a += da / 2.
 	count += 1
