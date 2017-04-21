@@ -10,6 +10,9 @@ set cblabel rotate by 0 'v'
 set size square
 set ticslevel 0
 #set cbr [0:50]
+set xtics 10
+set ytics 10
+set ztics 10
 
 set palette defined ( 0 'magenta', 1 'blue', 2 'cyan', 3 'green', 4 'yellow', 5 'orange', 6 'red' ) 
 
@@ -45,6 +48,14 @@ set cbr [0:10]
 #splot '../Results/1Ncells.dat' using 2:3:4:(sqrt($5*2 + $6**2 + $7**2)) with dots palette notitle
 #set out
 
+set cbr [0:7.5]
+set output 'Ordered.tex'
+splot '../Results/Ordered.dat' using 2:3:4:(sqrt($5*2 + $6**2 + $7**2)) with dots palette notitle
+set out
+
+set xtics 0.2
+set ytics 0.2
+set ztics 0.2
 set cbr [0:7.5]
 set output '1boxsize.tex'
 splot '../Results/1boxsize.dat' using 2:3:4:(sqrt($5*2 + $6**2 + $7**2)) with dots palette notitle
