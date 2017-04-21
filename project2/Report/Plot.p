@@ -9,7 +9,7 @@ set zlabel rotate by 0 'z'
 set cblabel rotate by 0 'v'
 set size square
 set ticslevel 0
-set cbr [0:20]
+set cbr [0:25]
 
 set palette defined ( 0 'magenta', 1 'blue', 2 'cyan', 3 'green', 4 'yellow', 5 'orange', 6 'red' ) 
 

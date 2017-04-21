@@ -3,3 +3,14 @@
 *.log
 *.gz
 /N-Body/Assignment1/*
+N-Body/dnc/Frames/
+N-Body/dnc/Results/
+N-Body/dnc/galaxies.dat
+N-Body/dnc/output.mp4
+N-Body/dnc/plot.py
+N-Body/output.mp4
+N-Body/plot.py
+N-Body/stable.mkv
+project2/ControlData
+project2/Data
+project2/RandomData
