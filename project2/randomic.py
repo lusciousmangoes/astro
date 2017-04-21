@@ -7,11 +7,11 @@ N=32**3
 H0 = 73.8 *((3.086**-1)*10**-19)
 G = 6.674*10**-11
 rho = 0.27*(3*H0**2)/(8*np.pi*G)
-V=50*50*50
+V=50*50*50*(3.086*10**22)**3
 m = rho*V/N
 part=[]
 i=0
-print(N)
+print(m*N)
 while i<N :
     a = uniform(0,box_size)
     b = uniform(0,box_size)
@@ -20,6 +20,5 @@ while i<N :
     i+=1
 
 u=universe(N,0.,part)
-
 u.writebinary('randomic.dat')
 
