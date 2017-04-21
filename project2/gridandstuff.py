@@ -4,10 +4,10 @@ import numpy as np
 
 print('Initializing...')
 #Read in initial conditions
-box_size = 50
-u = universe.readbinary('randomic.dat')
+box_size = 1
+#u = universe.readbinary('randomic.dat')
 #u = universe.readbinary('randomic_ordered.dat')
-#u = universe.readbinary('init_L1.dat',scale=box_size)
+u = universe.readbinary('init_L1.dat')
 
 
 #Declare parameters
@@ -100,7 +100,7 @@ while a <= 1.0:
 	a += da / 2.
 	count += 1
 
-avga.close()
+#avga.close()
 
 
 
