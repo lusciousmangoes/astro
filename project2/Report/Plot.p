@@ -1,8 +1,8 @@
 set terminal gif animate delay 5
 
-set zr [0:50]
-set xr [0:50]
-set yr [0:50]
+#set zr [0:50]
+#set xr [0:50]
+#set yr [0:50]
 set xlabel 'x'
 set ylabel rotate by 0 'y'
 set zlabel rotate by 0 'z'
@@ -44,6 +44,11 @@ set cbr [0:10]
 #set output '1Ncells.tex'
 #splot '../Results/1Ncells.dat' using 2:3:4:(sqrt($5*2 + $6**2 + $7**2)) with dots palette notitle
 #set out
+
+set cbr [0:7.5]
+set output '1boxsize.tex'
+splot '../Results/1boxsize.dat' using 2:3:4:(sqrt($5*2 + $6**2 + $7**2)) with dots palette notitle
+set out
 
 
 #set ticslevel 0
