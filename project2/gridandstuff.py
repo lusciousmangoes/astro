@@ -92,7 +92,7 @@ while a <= 1.0:
 	accels_grid()
 	u.leapfrog_velocity_update(dt)
 
-	u.write('./RandomData/universe{0:05d}.dat'.format(count))
+	u.write('./Data/universe{0:05d}.dat'.format(count))
 	
 	#Print current step and increment values
 	print('Current a: ', round(a,3), '\t', round(100*a,3), '%', end='\r')
