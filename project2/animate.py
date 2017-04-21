@@ -15,7 +15,7 @@ ax = fig.add_subplot(111, projection='3d')
 ax.axis('off')
 ax.set_aspect('equal')
 
-s = universe.read(argv[1])
+s = universe.readbinary(argv[1])
 x = s.all_x()
 y = s.all_y()
 z = s.all_z()
@@ -27,7 +27,7 @@ ax.set_zlim(0, 50)
 
 def update(fname):
     sleep(0.05)
-    s = universe.read(fname)
+    s = universe.readbinary(fname)
     x = s.all_x()
     y = s.all_y()
     z = s.all_z()
