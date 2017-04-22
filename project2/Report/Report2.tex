@@ -16,10 +16,21 @@
 
 \begin{document}
 \maketitle
-
+\section{Introduction}
+	In this project, our goal was to create our own realistic simulation of the universe in a cosmological scale. Our simulation starts from a redshift equal to 50 until a redshift of 0 which is the redshift at our current time. In addition, our simulation only considers matter and the cosmological constant as component of the universe. 
+\section{A Very Big Box}
+	Our first step was to find some parameters of our current universe, those parameters were . The current Hubble constant values is 73.8 km/s/Mpc, the density parameter of the cosmological consent is 0.73, the density parameter for matter is 0.27 and the total density parameter is 1.02. The critical density of the universe was found to be 9.277e-25 kg/m3and the value of the matter density of the universe is 2.505e-25 kg/m3. The current age of the universe was found to be 13923.769 million years. Finally, the age of the universe at z = 50 was found to be 45.813 million years. We took a cubic section of the universe with dimensions of 50x50x50 and calculated the mass of matter inside that cube to be 1.0146e46. 
+\section{Particle-Mesh Code}
+ (write about the writing of the code) \\
+	In this step, we built our own Particle-Mesh Code, the input is an initial conditions N-body file and the output is a snapshot of the system at regular intervals. The only parameter that we could manipulate is the time step. After some testing, the value of the time step was chosen to be 0.0025. The code was tested by creating two systems; the first one was to create a perfect grid of particles, evenly spaced. Since there’s no difference in density from the average value, the grid should persist throughout the simulations and that is what is observed in our results in Figure 1. The second system was to create a box of randomly placed particles. This system should form small structures where initially overdense regions are located, and void where initially underdense regions are. Figure 2 shows the results of the second system which agrees with the expected results.       
+\section{A (somewhat) Realistic Simulation}
+(add how the scaling was done)\\ 
+	In this step, we ran our code using the initial conditions provided, after scaling the box size the results are presented in Figure 3.   
+\section{answer questions here}
 \begin{figure}[htbp]
 \centering
 \include{Ordered}
+\caption{Final state of system with ordered initial conditions. Nothing happened here; all particles remained motionless}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -32,6 +43,7 @@
 \centering
 \input{Random3D}
 \end{subfigure}
+\caption{Final state of system with random initial conditions, shown in 2D and 3D. Color corresponds to particle velocity.}
 \end{figure}
 
 \begin{figure}[htbp]
