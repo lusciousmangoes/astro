@@ -1,5 +1,6 @@
 from numpy import *
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 
 def read_groups_catalogue(filename):
@@ -65,24 +66,56 @@ def read_groups_particles(filename):
   
   return Pos
 
+#*********************************************
+def drawSphere(xCenter, yCenter, zCenter, r):
+    #draw sphere
+    u, v = mgrid[0:2*pi:20j, 0:pi:10j]
+    a=cos(u)*sin(v)
+    b=sin(u)*sin(v)
+    c=cos(v)
+    # shift and scale sphere
+    x = r*a + xCenter
+    y = r*b + yCenter
+    z = r*c + zCenter
+    return (x,y,z)
+#***********************************************
 
-
-
-
-filename="fof_special_catalogue_036"
+#READ DATA
+filename="fof_special_catalogue_032"
 
 length,offset,mass,cm = read_groups_catalogue(filename)
 #print mass,cm
-
+#print mass,"\n",length
 
 plt.xlim(0,50)
 plt.ylim(0,50)
 x=[]
 y=[]
+z=[]
 for a in cm:
     x.append(a[0])
     y.append(a[1])
+    z.append(a[2])
+#**********************************
+
+#2d PLOT
 plt.scatter(x,y,s=length/2.)
-#plt.show()
-plt.savefig("N64.pdf")
+plt.savefig("Control.pdf")
+plt.close()
+#***************************************
+
+#3d PLOT
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.set_xlim(0,50)
+ax.set_ylim(0,50)
+ax.set_zlim(0,50)
+
+for (xi,yi,zi,ri) in zip(x,y,z,length/1500.):
+    (xs,ys,zs) = drawSphere(xi,yi,zi,ri)
+    ax.plot_wireframe(xs, ys, zs, color="r")
+
+
+plt.savefig('Control3d.pdf')
+
 
