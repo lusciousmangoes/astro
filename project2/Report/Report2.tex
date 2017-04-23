@@ -6,7 +6,7 @@
 \usepackage{xcolor,graphicx}
 %\usepackage{wrapfig}
 \usepackage{subcaption}
-%\usepackage{hyperref}
+\usepackage{hyperref}
 
 \title{Simulating the Universe}
 \author{Najla Alhamadi, Michael Cock, Rebecca Halloran, Brady Metherall, Hector Robinson}
@@ -26,6 +26,10 @@
 \section{A (somewhat) Realistic Simulation}
 (add how the scaling was done)\\ 
 	In this step, we ran our code using the initial conditions provided, after scaling the box size the results are presented in Figure 3.   
+\section{FoF}
+One question to investigate in our simulations is the structures formed, how much of the mass do they contain? It is difficult to define exactly where a structure ends, so to do this we implemented the "friend-of-a-friend" method (FoF). The idea with this method, is that groups are made up of particles within a "linking length" of each other. If two particles have one or more common neighboring particles, they are merged into a group. It checks every particle in the system and links them together into large groups. If the linking length is chosen properly, these groups will correspond to the structures seen in the simulations.\\
+To implement this we used a software package called FoF, created by Volker Springel. We used instructions on how to implement the code from LASTRO, which can be found \href{http://obswww.unige.ch/lastro/misc/TP4/doc/rst/Exercices/Ex05.html#extracting-haloes}{here}. This software provided us with infromation the groups' mass, center of mass, and size. We plotted the groups to make sure they matched up \ref{fig:groups}{}. It is seen quite obviously that the groups match up with those in the simulation. The largest two groups had masses of 29% and 22% of the total mass.
+\section{Comparisons}
 \section{answer questions here}
 \begin{figure}[htbp]
 \centering
@@ -88,6 +92,14 @@
 \centering
 \include{1boxsize}
 \caption{boxsize = 1}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+
+\includegraphics{Control_Groups.pdf}
+\caption{Groups}
+\label{fig:groups}
 \end{figure}
 
 \end{document}

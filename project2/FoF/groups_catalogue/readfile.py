@@ -84,7 +84,7 @@ def drawSphere(xCenter, yCenter, zCenter, r):
 filename="fof_special_catalogue_032"
 
 length,offset,mass,cm = read_groups_catalogue(filename)
-#print mass,cm
+print mass
 #print mass,"\n",length
 
 plt.xlim(0,50)
@@ -110,6 +110,9 @@ ax = fig.add_subplot(111, projection='3d')
 ax.set_xlim(0,50)
 ax.set_ylim(0,50)
 ax.set_zlim(0,50)
+ax.set_xlabel(r'$x$',fontsize=23)
+ax.set_ylabel(r'$y$',fontsize=23)
+ax.set_zlabel(r'$z$',fontsize=23)
 
 for (xi,yi,zi,ri) in zip(x,y,z,length/1500.):
     (xs,ys,zs) = drawSphere(xi,yi,zi,ri)
