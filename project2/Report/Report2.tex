@@ -7,6 +7,10 @@
 %\usepackage{wrapfig}
 \usepackage{subcaption}
 \usepackage{hyperref}
+\usepackage{mathtools}
+
+
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
 
 \title{Simulating the Universe}
 \author{Najla Alhamadi, Michael Cock, Rebecca Halloran, Brady Metherall, Hector Robinson}
@@ -17,12 +21,12 @@
 \begin{document}
 \maketitle
 \section{Introduction}
-	In this project, our goal was to create our own realistic simulation of the universe in a cosmological scale. Our simulation starts from a redshift equal to 50 until a redshift of 0 which is the redshift at our current time. In addition, our simulation only considers matter and the cosmological constant as component of the universe. 
+	In this project, our goal was to create our own realistic simulation of the universe on a cosmological scale. Our simulation starts from a redshift of 50 (start of the universe), until a redshift of 0 (current time). In addition, our simulation only considers matter and the cosmological constant as the two components of the universe. We do this by using a particle mesh technique to simulate the universe, and solve Poisson's equation to find the accelerations of particles. We step the universe forward by using a leapfrog integrator.
 \section{A Very Big Box}
-	Our first step was to find some parameters of our current universe, those parameters were . The current Hubble constant values is 73.8 km/s/Mpc, the density parameter of the cosmological consent is 0.73, the density parameter for matter is 0.27 and the total density parameter is 1.02. The critical density of the universe was found to be 9.277e-25 kg/m3and the value of the matter density of the universe is 2.505e-25 kg/m3. The current age of the universe was found to be 13923.769 million years. Finally, the age of the universe at z = 50 was found to be 45.813 million years. We took a cubic section of the universe with dimensions of 50x50x50 and calculated the mass of matter inside that cube to be 1.0146e46. 
+	Our first step was to find the parameters of our current universe, as follows: the current Hubble constant value is 73.8 km/s/Mpc; the density parameter of the cosmological constant is 0.73; the density parameter for matter is 0.27; the total density parameter is 1.02. The critical density of the universe was found to be 9.277\e{-25} kg/m$^3$ and the value of the matter density of the universe is 2.505\e{-25} kg/m$^3$. The current age of the universe was found to be 13923.769 million years. Finally, the age of the universe at z = 50 was found to be 45.813 million years. We took a cubic section of the universe with dimensions of 50x50x50 and calculated the mass of matter inside that cube to be 1.0146\e{46} kg.  
 \section{Particle-Mesh Code}
  (write about the writing of the code) \\
-	In this step, we built our own Particle-Mesh Code, the input is an initial conditions N-body file and the output is a snapshot of the system at regular intervals. The only parameter that we could manipulate is the time step. After some testing, the value of the time step was chosen to be 0.0025. The code was tested by creating two systems; the first one was to create a perfect grid of particles, evenly spaced. Since there’s no difference in density from the average value, the grid should persist throughout the simulations and that is what is observed in our results in Figure 1. The second system was to create a box of randomly placed particles. This system should form small structures where initially overdense regions are located, and void where initially underdense regions are. Figure 2 shows the results of the second system which agrees with the expected results.       
+	In this step, we built our own Particle-Mesh Code, the input is an initial conditions N-body file and the outputs are snapshots of the system at regular "timestep" intervals. The only parameter that we could manipulate is the time step. After some testing, the value of the time step was chosen to be 0.0025. The code was tested by creating two systems; the first one was to create a perfect grid of particles, evenly spaced. Since there’s no difference in density from the average value, the grid should persist throughout the simulations and that is what is observed in our results in Figure \ref{fig:order}{}. The second system was one with random initial conditions. This should result in the formations of structures in regions with higher initial density and empty space in those with lower initial density. Figure \ref{fig:randomic}{} shows the results of the second system which agrees with the expected results.       
 \section{A (somewhat) Realistic Simulation}
 (add how the scaling was done)\\ 
 	In this step, we ran our code using the initial conditions provided, after scaling the box size the results are presented in Figure 3.   
@@ -38,10 +42,13 @@ Gadget  is a very complex system to use. It needs a lot more time to analyze the
 After having the ability to view the snapshots we now want to run the it with our initial conditions that we had using the particle mesh so we can compare our results. We were given initial conditions to use with a parameter file that was changed to be the same as our system. Unfortunately, after many attempts the program was still giving errors about the unit mass in grams that were giving it. We had to abandon hope and attempt to try a different approach that might work better. With the unsuccessful attempt at working with Gadget we attempt to use a program we have used before, dnc. 
 	To get dnc to be able to run a collapse of the universe there needs to be some changes. We need to centre a box at (0,0,0) and cut out a sphere with radius 25.  The positions will need to be scaled by the scale factor of the universe, a. This will make up for us not being able to use co-moving coordinates. Initially our system will be smaller than it is today, then it will increase to the size it is today. The initial velocity needs to be different for the initially. Normally we have it set to 0 but it needs to be in a Hubble flow which is the Hubble constant at z=50 times the position. 
 \section{answer questions here}
+
+
 \begin{figure}[htbp]
 \centering
 \include{Ordered}
-\caption{Final state of system with ordered initial conditions. Nothing happened here; all particles remained motionless}
+\caption{Final state of system with ordered initial conditions. Nothing happened here; all particles remained motionless (Zoom in and you can see the particles!)}
+\label{fig:order}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -55,6 +62,7 @@ After having the ability to view the snapshots we now want to run the it with ou
 \input{Random3D}
 \end{subfigure}
 \caption{Final state of system with random initial conditions, shown in 2D and 3D. Color corresponds to particle velocity.}
+\label{fig:randomic}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -70,40 +78,46 @@ After having the ability to view the snapshots we now want to run the it with ou
 \caption{3D view.}
 \end{subfigure}
 \caption{Control simulation.}
+\label{fig:control}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \include{Accel}
+\label{fig:accel}
+\caption{Average acceleration of particles throughout the simulation.}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \include{1Ncells}
 \caption{$N_c = n^{1/3}$}
+\label{fig:1ncells}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \include{3mass}
 \caption{$\Omega_m = 3.0$, $\Omega_k = \Omega_\Lambda = 0$}
+\label{fig:3mass}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \include{N64}
 \caption{$n = 64^3$}
+\label{fig:n64}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \include{1boxsize}
 \caption{boxsize = 1}
+\label{fig:1boxsize}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
-
 \includegraphics{Control_Groups.pdf}
 \caption{Groups}
 \label{fig:groups}
