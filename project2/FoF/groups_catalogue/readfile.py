@@ -107,6 +107,7 @@ plt.close()
 #3d PLOT
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
+ax.grid('off')
 ax.set_xlim(0,50)
 ax.set_ylim(0,50)
 ax.set_zlim(0,50)

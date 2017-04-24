@@ -27,13 +27,10 @@
 	Our first step was to find the parameters of our current universe, as follows: the current Hubble constant value is 73.8 km/s/Mpc; the density parameter of the cosmological constant is 0.73; the density parameter for matter is 0.27; the total density parameter is 1.02. The critical density of the universe was found to be 9.277\e{-25} kg/m$^3$ and the value of the matter density of the universe is 2.505\e{-25} kg/m$^3$. The current age of the universe was found to be 13923.769 million years. Finally, the age of the universe at z = 50 was found to be 45.813 million years. We took a cubic section of the universe with dimensions of 50 x 50 x 50 Mpc$^3$ and calculated the mass of matter inside that cube to be 1.0146\e{46} kg.  
 	
 \section{Particle-Mesh Code}
- (write about the writing of the code. Reference figure \ref{fig:accel}) \\
-************** accelerations
-
-
 
 	In this step, we built our own Particle-Mesh Code, the input is an initial conditions N-body file and the outputs are snapshots of the system at regular "timestep" intervals. The only parameter that we could manipulate is the time step. After some testing, the value of the time step was chosen to be 0.0025. We create initial conditions for particles in the system. Dividing the system into boxes can give us a particle density per box. Using this density, we can find the potential. The code we wrote goes through each particle, determine which box it is in and increments that index by one until we have gone through all the particles. Doing so gives us the density of each cell. We can get the perturbation of the density per cell from the normal. Taking the Fast Fourier Transform of the perturbation we can get the Fast Fourier Transform of the potential. To get the actual potential we must do the inverse Fast Fourier Transform. From the potential, we are able to get the acceleration associated with each cell, then update the positions of the particles in those cells based on the accelerations. 
-	The code was tested by creating two systems; the first one was to create a perfect grid of particles, evenly spaced. Since there’s no difference in density from the average value, the grid should persist throughout the simulations and that is what is observed in our results in Figure \ref{fig:order}{}. The second system was one with random initial conditions. This should result in the formations of structures in regions with higher initial density and empty space in those with lower initial density. Figure \ref{fig:randomic}{} shows the results of the second system which agrees with the expected results.       
+	The code was tested by creating two systems; the first one was to create a perfect grid of particles, evenly spaced. Since there’s no difference in density from the average value, the grid should persist throughout the simulations and that is what is observed in our results in Figure \ref{fig:order}{}. The second system was one with random initial conditions. This should result in the formations of structures in regions with higher initial density and empty space in those with lower initial density. Figure \ref{fig:randomic}{} shows the results of the second system which agrees with the expected results.
+	We ran into several problems while writing this section of the code. One method of troubleshooting we used was to look at the average acceleration of the particles. Based off of this, we would (hopefully) tell what parts of our code were producing erroneous results, and make the appropriate changes. We plotted the average accelerations of the particles for our simulation, which can be seen in Figure \ref{fig:accel}{}. The weird behaviour in the curve corresponds to the formation of complicated structures in the system.
 
 
 
@@ -60,7 +57,7 @@
 
 
 
-\section{Gadget}
+\section{GADGET}
 	One further item we decided to look at was to see how our model compared to an industry used system. To do so, we looked into using the GADGET (GAlaxies with Dark matter and Gas intEracT) system.
 	GADGET is a very complex system to use. We needs a lot more time to analyze the user guide and the code to really understand what is happening. We were able to download the program and run it with sample parameters that were included in the download. Instead of trying to change our plotting code to take the snapshot files (or vice versa), we were able to find a program that will view the snapshot files. This program ``GADGET FILE VIEWER" is very simple to use. It opens the file in a GUI to view them and the image can be manipulated by changing the colour scheme depending on the particle type. The following image is form Gadget File Viewer of two galaxies colliding.
 
@@ -72,9 +69,11 @@
 
 	Now that we have the ability to view the snapshots, we now want to run GADGET with our initial conditions that we used for our particle mesh code. This way we can compare our results to the results of GADGET. We were given initial conditions to use with a parameter file that was changed to be the same as our system. Unfortunately, after many attempts the program was still giving errors about the unit mass in grams that we were giving it. We had to abandon hope and attempt to try a different approach that might work better. With the unsuccessful attempt at working with Gadget we attempt to use a program we have used before, DNC. 
 	To get DNC to be able to run a collapse of the universe there needs to be some changes. We need to centre a box at (0,0,0) and cut out a sphere with radius 25.  The positions will need to be scaled by the scale factor of the universe, a. This will make up for us not being able to use co-moving coordinates. Initially our system will be smaller than it is today, then it will increase to the size it is today. The initial velocity needs to be different to incorporate the expansion of the universe. Normally we have it set to 0 but it needs to be in a Hubble flow which is the Hubble constant at z=50 times the position.
+	After doing all of this, the system did not perform as expected. The particles in the universe simply collapsed, as would be expected if there was no expansion whatsoever. Yet again, unfortunate time constraints did not allow for us to correct this problem.
 
-*********** DNC
 
+\section{Discussion}
+	In this project we successfully simulated the large-scale structure of the Universe. We did this with a particle-mesh code. We implemented some FoF code to identify the structures formed in our simulations. There were several difficulties that we ran into along the way, the main issue being time constraints. Had we had more time, we may have been able to iron out some of the other issues that remain. 
 
 
 
@@ -101,6 +100,14 @@
 
 \begin{figure}[htbp]
 \centering
+\include{Accel}
+\caption{Average acceleration of particles throughout the simulation.}
+\label{fig:accel}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
 \begin{subfigure}{\textwidth}
 \centering
 \input{Control}
@@ -115,16 +122,10 @@
 \label{fig:control}
 \end{figure}
 
-\begin{figure}[htbp]
-\centering
-\include{Accel}
-\label{fig:accel}
-\caption{Average acceleration of particles throughout the simulation.}
-\end{figure}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics{Control_Groups.pdf}
+\includegraphics[width=6.2in]{Control_Groups.pdf}
 \caption{Groups}
 \label{fig:groups}
 \end{figure}
