@@ -23,9 +23,12 @@ for i in range(0,u.n):
 	x[i]=50*u.parts[i].position[0]-25
 	y[i]=50*u.parts[i].position[1]-25
 	z[i]=50*u.parts[i].position[2]-25
-	vx[i]=H*u.parts[i].position[0]
-	vy[i]=H*u.parts[i].position[1]
-	vz[i]=H*u.parts[i].position[2]
+#	vx[i]=H*u.parts[i].position[0]
+#	vy[i]=H*u.parts[i].position[1]
+#	vz[i]=H*u.parts[i].position[2]
+	vx[i]=H*x[i]
+	vy[i]=H*y[i]
+	vz[i]=H*z[i]
 
 
 
