@@ -25,7 +25,7 @@
 \section{A Very Big Box}
 	Our first step was to find the parameters of our current universe, as follows: the current Hubble constant value is 73.8 km/s/Mpc; the density parameter of the cosmological constant is 0.73; the density parameter for matter is 0.27; the total density parameter is 1.02. The critical density of the universe was found to be 9.277\e{-25} kg/m$^3$ and the value of the matter density of the universe is 2.505\e{-25} kg/m$^3$. The current age of the universe was found to be 13923.769 million years. Finally, the age of the universe at z = 50 was found to be 45.813 million years. We took a cubic section of the universe with dimensions of 50x50x50 and calculated the mass of matter inside that cube to be 1.0146\e{46} kg.  
 \section{Particle-Mesh Code}
- (write about the writing of the code) \\
+ (write about the writing of the code. Reference figure \ref{fig:accel}) \\
 	In this step, we built our own Particle-Mesh Code, the input is an initial conditions N-body file and the outputs are snapshots of the system at regular "timestep" intervals. The only parameter that we could manipulate is the time step. After some testing, the value of the time step was chosen to be 0.0025. The code was tested by creating two systems; the first one was to create a perfect grid of particles, evenly spaced. Since there’s no difference in density from the average value, the grid should persist throughout the simulations and that is what is observed in our results in Figure \ref{fig:order}{}. The second system was one with random initial conditions. This should result in the formations of structures in regions with higher initial density and empty space in those with lower initial density. Figure \ref{fig:randomic}{} shows the results of the second system which agrees with the expected results.       
 \section{A (somewhat) Realistic Simulation}
 (add how the scaling was done????????)\\ 
@@ -36,13 +36,31 @@
 	One of the question we should ask about our simulation is about the structures formed; how much mass do they contain? It is difficult to define exactly where a structure ends, so to do this we implemented the ``friend-of-a-friend" method (FoF). The idea with this method, is that groups are made up of particles within a``linking length" of each other. If two particles have one or more common neighboring particles within the linking length, they are merged into a group. It checks every particle in the system and links them together into large groups. If the linking length is chosen properly, these groups will correspond to the structures seen in the simulations.\\
 	To implement this, we used a software package called FoF, created by Volker Springel. We used instructions on how to implement the code from LASTRO (University of Geneva), which can be found \href{http://obswww.unige.ch/lastro/misc/TP4/doc/rst/Exercices/Ex05.html#extracting-haloes}{here}. This software provided us with infromation the groups' mass, center of mass, and size. We plotted the groups as seen in Figure \ref{fig:groups}{} to make sure they matched up with those in our control simulation. It is seen quite obviously that the groups match up with those in Figure \ref{fig:control}. The largest two groups had masses of 29\% and 22\% of the total mass.
 
-\section{Gadget}
-GADGET
-Gadget  is a very complex system to use. It needs a lot more time to analyze the user guide and the code to really understand what is happening. We were able to download the program and run it with sample parameters that were included in the download. Instead of trying to change our plotting code to take the snapshot files or changing the snapshot files that can be read by our program we were able to find a program that will view the snapshot files. This program is called Gadget filer viewer. It is very simple to use. It opens the file to view them and you can change the colour scheme depending on the particle type. Unfortunately we were unable to play with it long enough to determine how to get a video from it. The following image is form Gadget File Viewer of two galaxies colliding. 
 
-After having the ability to view the snapshots we now want to run the it with our initial conditions that we had using the particle mesh so we can compare our results. We were given initial conditions to use with a parameter file that was changed to be the same as our system. Unfortunately, after many attempts the program was still giving errors about the unit mass in grams that were giving it. We had to abandon hope and attempt to try a different approach that might work better. With the unsuccessful attempt at working with Gadget we attempt to use a program we have used before, dnc. 
+\section{Other Questions}
+	Another question we should ask is how the size of the universe affects our simulation. As can be seen in Figure \ref{fig:1boxsize}{}, the size of the universe has been shrunk to 1Mpc$^3$. We had to rescale our initial conditions to fit into this size universe, but all other conditions remained the same. The effect of this, was that all the particles collapsed into one super massive structure. The reason for this, is that there is not enough space in between particles initially for any empty regions to form. All of the separate structure formation seen in the previous simulation can not seen here.
+
+	A further question we can ask is \ref{fig:3mass} ******INSERT QUESTION HERE******
+
+	Another question we need to ask is what would occur if we varied the size of our grid. Varying the number of cells in our box will affect the distribution of particles in our system and therefore will affect the long-term structure of our system. In Figure \ref{fig:1ncells}, we can observe that the particles are more spread out since there are more cells to fill. In addition, when we compare the plots we can see that in our initial condition plot we have some large structure which can corresponds to galaxies and galaxies clusters whereas this is not observed in the plot with the larger number of cells. 
+	
+	A final alteration we can make is to increase the number of particles in our simulations. Doing this will increase the probability of interactions between the particles, since the box is still the same size. Figure \ref{fig:n64} shows our system with the increased number of particles. As we can observe the particles almost formed a one large structure, which can be explained by the fact that the average distance between the particles have decreased by the increase in the number of particles. The decrease in distance have caused the particles to form one large structure instead of forming multiple smaller structures.   
+
+
+
+\section{Gadget}
+	One further item we decided to look at was to see how our model compared to an industry used system. To do so, we looked into using the GADGET (GAlaxies with Dark matter and Gas intEracT) system.
+	GADGET is a very complex system to use. It needs a lot more time to analyze the user guide and the code to really understand what is happening. We were able to download the program and run it with sample parameters that were included in the download. Instead of trying to change our plotting code to take the snapshot files or changing the snapshot files that can be read by our program, we were able to find a program that will view the snapshot files. This program ``GADGET filer viewer" is very simple to use. It opens the file to view them and you can change the colour scheme depending on the particle type. Unfortunately we were unable to play with it long enough to determine how to get a video from it. The following image is form Gadget File Viewer of two galaxies colliding.
+
+\begin{figure*}[h]
+\includegraphics[width=4.5in]{gadget.png}
+\centering
+\end{figure*}
+
+
+	After having the ability to view the snapshots we now want to run the it with our initial conditions that we had using the particle mesh so we can compare our results. We were given initial conditions to use with a parameter file that was changed to be the same as our system. Unfortunately, after many attempts the program was still giving errors about the unit mass in grams that were giving it. We had to abandon hope and attempt to try a different approach that might work better. With the unsuccessful attempt at working with Gadget we attempt to use a program we have used before, dnc. 
 	To get dnc to be able to run a collapse of the universe there needs to be some changes. We need to centre a box at (0,0,0) and cut out a sphere with radius 25.  The positions will need to be scaled by the scale factor of the universe, a. This will make up for us not being able to use co-moving coordinates. Initially our system will be smaller than it is today, then it will increase to the size it is today. The initial velocity needs to be different for the initially. Normally we have it set to 0 but it needs to be in a Hubble flow which is the Hubble constant at z=50 times the position. 
-\section{answer questions here}
+
 
 
 \begin{figure}[htbp]
@@ -91,9 +109,17 @@ After having the ability to view the snapshots we now want to run the it with ou
 
 \begin{figure}[htbp]
 \centering
-\include{1Ncells}
-\caption{$N_c = n^{1/3}$}
-\label{fig:1ncells}
+\includegraphics{Control_Groups.pdf}
+\caption{Groups}
+\label{fig:groups}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\include{1boxsize}
+\caption{boxsize = 1}
+\label{fig:1boxsize}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -105,23 +131,19 @@ After having the ability to view the snapshots we now want to run the it with ou
 
 \begin{figure}[htbp]
 \centering
+\include{1Ncells}
+\caption{$N_c = n^{1/3}$}
+\label{fig:1ncells}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
 \include{N64}
 \caption{$n = 64^3$}
 \label{fig:n64}
 \end{figure}
 
-\begin{figure}[htbp]
-\centering
-\include{1boxsize}
-\caption{boxsize = 1}
-\label{fig:1boxsize}
-\end{figure}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics{Control_Groups.pdf}
-\caption{Groups}
-\label{fig:groups}
-\end{figure}
+
 
 \end{document}
