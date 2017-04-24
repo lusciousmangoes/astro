@@ -26,10 +26,17 @@
 \section{A (somewhat) Realistic Simulation}
 (add how the scaling was done)\\ 
 	In this step, we ran our code using the initial conditions provided, after scaling the box size the results are presented in Figure 3.   
+
 \section{FoF}
 One question to investigate in our simulations is the structures formed, how much of the mass do they contain? It is difficult to define exactly where a structure ends, so to do this we implemented the "friend-of-a-friend" method (FoF). The idea with this method, is that groups are made up of particles within a "linking length" of each other. If two particles have one or more common neighboring particles, they are merged into a group. It checks every particle in the system and links them together into large groups. If the linking length is chosen properly, these groups will correspond to the structures seen in the simulations.\\
 To implement this we used a software package called FoF, created by Volker Springel. We used instructions on how to implement the code from LASTRO, which can be found \href{http://obswww.unige.ch/lastro/misc/TP4/doc/rst/Exercices/Ex05.html#extracting-haloes}{here}. This software provided us with infromation the groups' mass, center of mass, and size. We plotted the groups to make sure they matched up \ref{fig:groups}{}. It is seen quite obviously that the groups match up with those in the simulation. The largest two groups had masses of 29% and 22% of the total mass.
-\section{Comparisons}
+
+\section{Gadget}
+GADGET
+Gadget  is a very complex system to use. It needs a lot more time to analyze the user guide and the code to really understand what is happening. We were able to download the program and run it with sample parameters that were included in the download. Instead of trying to change our plotting code to take the snapshot files or changing the snapshot files that can be read by our program we were able to find a program that will view the snapshot files. This program is called Gadget filer viewer. It is very simple to use. It opens the file to view them and you can change the colour scheme depending on the particle type. Unfortunately we were unable to play with it long enough to determine how to get a video from it. The following image is form Gadget File Viewer of two galaxies colliding. 
+
+After having the ability to view the snapshots we now want to run the it with our initial conditions that we had using the particle mesh so we can compare our results. We were given initial conditions to use with a parameter file that was changed to be the same as our system. Unfortunately, after many attempts the program was still giving errors about the unit mass in grams that were giving it. We had to abandon hope and attempt to try a different approach that might work better. With the unsuccessful attempt at working with Gadget we attempt to use a program we have used before, dnc. 
+	To get dnc to be able to run a collapse of the universe there needs to be some changes. We need to centre a box at (0,0,0) and cut out a sphere with radius 25.  The positions will need to be scaled by the scale factor of the universe, a. This will make up for us not being able to use co-moving coordinates. Initially our system will be smaller than it is today, then it will increase to the size it is today. The initial velocity needs to be different for the initially. Normally we have it set to 0 but it needs to be in a Hubble flow which is the Hubble constant at z=50 times the position. 
 \section{answer questions here}
 \begin{figure}[htbp]
 \centering
